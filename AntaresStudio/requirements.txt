@@ -1,0 +1,24 @@
+# ANTARES KAPSÜL 3D STUDIO - Gerekli Kütüphaneler
+
+# GUI Framework
+PyQt6>=6.4.0
+
+# Görüntü İşleme
+opencv-python>=4.8.0
+opencv-contrib-python>=4.8.0
+numpy>=1.24.0
+Pillow>=10.0.0
+
+# 3D İşleme (ÖNERİLİR - En iyi sonuçlar için)
+open3d>=0.17.0
+
+# AI Arkaplan Temizleme (OPSİYONEL - Daha iyi izolasyon için)
+rembg>=2.0.50
+
+# Network
+requests>=2.31.0
+
+# Not: 
+# - open3d mesh generation ve görselleştirme için şiddetle önerilir
+# - rembg olmadan da çalışır (GrabCut fallback kullanır)
+# - CUDA destekli GPU varsa performans artışı sağlar
