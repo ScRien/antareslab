@@ -1,47 +1,47 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ANTARES V8 | Arkeolojik Koruma Kapsülü</title>
     <meta name="description"
-        content="Antares V8 - Arkeolojik eserleri topraktan çıktığı an koruyan otonom kapsül. Dijital İkiz teknolojisi ile geleceği inşa ediyoruz.">
+        content="ANTARES V8 - Autonomous Archaeological Preservation Ecosystem. AI-powered climate control and digital twin generation technology.">
+    <meta name="keywords" content="archaeology, preservation, 3D printing, IoT, digital twin, photogrammetry, ANTARES">
+    <title>ANTARES V8 | Autonomous Preservation Ecosystem</title>
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+    <!-- Fonts: Clash Display + Inter -->
+    <link href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
         rel="stylesheet">
 
     <!-- TailwindCSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- GSAP & ScrollTrigger -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-
-    <!-- Lenis Smooth Scroll -->
-    <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
-
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        'space-black': '#050505',
-                        'deep-black': '#0a0a0a',
+                        'void': '#020203',
                         'neon-cyan': '#00f2ff',
                         'electric-purple': '#bc13fe',
-                        'soft-white': '#f0f0f0',
                     },
                     fontFamily: {
-                        'grotesk': ['Space Grotesk', 'sans-serif'],
-                    },
+                        'clash': ['Clash Display', 'sans-serif'],
+                        'inter': ['Inter', 'sans-serif'],
+                        'mono': ['JetBrains Mono', 'monospace'],
+                    }
                 }
             }
         }
     </script>
+
+    <!-- GSAP + ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <!-- Lenis Smooth Scroll -->
+    <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
 
     <style>
         * {
@@ -55,10 +55,14 @@
             height: auto;
         }
 
+        .lenis.lenis-smooth {
+            scroll-behavior: auto !important;
+        }
+
         body {
-            font-family: 'Space Grotesk', sans-serif;
-            background-color: #050505;
-            color: #f0f0f0;
+            background-color: #020203;
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
             overflow-x: hidden;
         }
 
@@ -68,7 +72,7 @@
         }
 
         ::-webkit-scrollbar-track {
-            background: #0a0a0a;
+            background: #020203;
         }
 
         ::-webkit-scrollbar-thumb {
@@ -76,67 +80,180 @@
             border-radius: 3px;
         }
 
-        /* Glow Effects */
-        .glow-cyan {
-            box-shadow: 0 0 30px rgba(0, 242, 255, 0.3),
-                0 0 60px rgba(0, 242, 255, 0.15);
-        }
-
-        .glow-purple {
-            box-shadow: 0 0 30px rgba(188, 19, 254, 0.3),
-                0 0 60px rgba(188, 19, 254, 0.15);
-        }
-
-        .text-glow-cyan {
-            text-shadow: 0 0 20px rgba(0, 242, 255, 0.5),
-                0 0 40px rgba(0, 242, 255, 0.3);
-        }
-
-        .text-glow-purple {
-            text-shadow: 0 0 20px rgba(188, 19, 254, 0.5),
-                0 0 40px rgba(188, 19, 254, 0.3);
-        }
-
-        /* Glassmorphism */
-        .glass {
-            background: rgba(10, 10, 10, 0.6);
+        /* Glassmorphism Panel */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
         }
 
-        .glass-strong {
+        .glass-panel-strong {
             background: rgba(10, 10, 10, 0.85);
             backdrop-filter: blur(30px);
             -webkit-backdrop-filter: blur(30px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 24px;
         }
 
-        /* Gradient Border */
-        .gradient-border {
-            position: relative;
+        /* Glow Effects */
+        .glow-cyan {
+            box-shadow: 0 0 60px rgba(0, 242, 255, 0.2);
         }
 
-        .gradient-border::before {
-            content: '';
+        .glow-purple {
+            box-shadow: 0 0 60px rgba(188, 19, 254, 0.25);
+        }
+
+        .text-glow-cyan {
+            text-shadow: 0 0 40px rgba(0, 242, 255, 0.5);
+        }
+
+        .text-glow-purple {
+            text-shadow: 0 0 40px rgba(188, 19, 254, 0.5);
+        }
+
+        /* Stage Images */
+        .stage-image {
             position: absolute;
             inset: 0;
-            border-radius: inherit;
-            padding: 1px;
-            background: linear-gradient(135deg, #00f2ff, #bc13fe);
-            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-            -webkit-mask-composite: xor;
-            mask-composite: exclude;
-            pointer-events: none;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            border-radius: 24px;
+            transition: opacity 0.5s ease;
         }
 
-        /* Hero Background Animation */
-        .hero-bg {
-            background:
-                radial-gradient(ellipse at 20% 80%, rgba(0, 242, 255, 0.08) 0%, transparent 50%),
-                radial-gradient(ellipse at 80% 20%, rgba(188, 19, 254, 0.08) 0%, transparent 50%),
-                radial-gradient(ellipse at 50% 50%, rgba(0, 242, 255, 0.03) 0%, transparent 70%),
-                #050505;
+        .stage-image.active {
+            opacity: 1;
+        }
+
+        /* Text Cards */
+        .text-card {
+            position: absolute;
+            opacity: 0;
+            transform: translateY(100px);
+            z-index: 10;
+        }
+
+        /* Fallback: Show cards if JS fails */
+        .no-js .text-card {
+            position: relative !important;
+            opacity: 1 !important;
+            transform: none !important;
+            margin-bottom: 2rem;
+        }
+
+        /* Specs section cards - Scroll-triggered animation */
+        @keyframes fadeUpSpec {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        #specs .glass-panel {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        #specs .glass-panel.spec-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        #specs .glass-panel:nth-child(1).spec-visible {
+            transition-delay: 0.1s;
+        }
+
+        #specs .glass-panel:nth-child(2).spec-visible {
+            transition-delay: 0.2s;
+        }
+
+        #specs .glass-panel:nth-child(3).spec-visible {
+            transition-delay: 0.3s;
+        }
+
+        /* Stage container needs explicit position */
+        #stage {
+            position: relative;
+            z-index: 1;
+        }
+
+        #sticky-wrapper {
+            z-index: 5;
+        }
+
+        /* Code Block Styling */
+        .code-block {
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(0, 242, 255, 0.2);
+            border-radius: 12px;
+            padding: 16px 20px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .code-block-purple {
+            border-color: rgba(188, 19, 254, 0.3);
+        }
+
+        /* Progress Bar */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: linear-gradient(90deg, #00f2ff, #bc13fe);
+            z-index: 9999;
+        }
+
+        /* Scene Indicator */
+        .scene-indicator {
+            position: fixed;
+            right: 32px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .scene-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+        }
+
+        .scene-dot:hover {
+            background: rgba(255, 255, 255, 0.4);
+        }
+
+        .scene-dot.active {
+            background: #00f2ff;
+            border-color: #00f2ff;
+            box-shadow: 0 0 20px rgba(0, 242, 255, 0.6);
+        }
+
+        .scene-dot.software.active {
+            background: #bc13fe;
+            border-color: #bc13fe;
+            box-shadow: 0 0 20px rgba(188, 19, 254, 0.6);
         }
 
         /* Floating Particles */
@@ -144,88 +261,17 @@
             position: absolute;
             width: 4px;
             height: 4px;
-            background: #00f2ff;
+            background: rgba(0, 242, 255, 0.4);
             border-radius: 50%;
-            opacity: 0.5;
-            animation: float 8s infinite ease-in-out;
+            pointer-events: none;
         }
 
-        @keyframes float {
-
-            0%,
-            100% {
-                transform: translateY(0) translateX(0);
-                opacity: 0.3;
-            }
-
-            50% {
-                transform: translateY(-30px) translateX(10px);
-                opacity: 0.8;
-            }
+        /* Gradient Overlay */
+        .gradient-overlay {
+            background: linear-gradient(180deg, transparent 0%, rgba(2, 2, 3, 0.8) 100%);
         }
 
-        /* Visual Stage */
-        .visual-stage {
-            position: relative;
-            width: 100%;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .stage-image {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0;
-            transform: scale(1.1);
-            transition: opacity 0.5s ease;
-        }
-
-        .stage-image.active {
-            opacity: 1;
-            transform: scale(1);
-        }
-
-        /* Story Cards */
-        .story-card {
-            opacity: 0;
-            transform: translateY(50px);
-        }
-
-        /* Responsive Pinned Section */
-        @media (max-width: 1024px) {
-            .pinned-wrapper {
-                flex-direction: column;
-            }
-
-            .visual-container {
-                position: relative !important;
-                height: 50vh !important;
-                top: 0 !important;
-            }
-
-            .story-container {
-                padding-top: 2rem;
-            }
-        }
-
-        /* Gallery Hover Effects */
-        .gallery-item {
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .gallery-item:hover {
-            transform: translateY(-10px) scale(1.02);
-        }
-
-        .gallery-item:hover .gallery-overlay {
-            opacity: 1;
-        }
-
-        /* Noise Overlay */
+        /* Noise Effect */
         .noise::before {
             content: '';
             position: fixed;
@@ -234,19 +280,12 @@
             width: 100%;
             height: 100%;
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-            opacity: 0.03;
+            opacity: 0.02;
             pointer-events: none;
             z-index: 1000;
         }
 
-        /* Line Decoration */
-        .line-glow {
-            height: 1px;
-            background: linear-gradient(90deg, transparent, #00f2ff, #bc13fe, transparent);
-            opacity: 0.5;
-        }
-
-        /* Number Badge */
+        /* Step Number Badge */
         .step-number {
             width: 48px;
             height: 48px;
@@ -259,727 +298,1019 @@
             font-size: 1.25rem;
             font-weight: 600;
             color: #00f2ff;
+            font-family: 'Clash Display', sans-serif;
         }
 
-        /* Mobile Story Panel */
+        .step-number.purple {
+            border-color: rgba(188, 19, 254, 0.5);
+            color: #bc13fe;
+        }
+
+        /* Mobile Responsive */
         @media (max-width: 1024px) {
-            .story-panel {
-                min-height: auto !important;
-                padding: 3rem 1.5rem !important;
+            .scene-indicator {
+                display: none;
             }
+
+            .glass-panel,
+            .glass-panel-strong {
+                border-radius: 16px;
+            }
+
+            .code-block {
+                font-size: 11px;
+                padding: 12px 14px;
+            }
+        }
+
+        /* ===== LANGUAGE SWITCHER ===== */
+        .lang-switcher {
+            display: flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 4px;
+            gap: 2px;
+        }
+
+        .lang-btn {
+            padding: 6px 12px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.5);
+            background: transparent;
+            border: none;
+            border-radius: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .lang-btn:hover {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .lang-btn.active {
+            background: linear-gradient(135deg, #00f2ff, #00d4e0);
+            color: #020203;
+            box-shadow: 0 0 20px rgba(0, 242, 255, 0.3);
+        }
+
+        .lang-divider {
+            width: 1px;
+            height: 16px;
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Language Change Animation */
+        [data-lang] {
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        [data-lang].lang-switching {
+            opacity: 0;
+            transform: translateY(-5px);
         }
     </style>
 </head>
 
-<body class="noise">
+<body class="noise no-js">
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- Scene Indicator (Desktop) -->
+    <div class="scene-indicator" id="sceneIndicator">
+        <div class="scene-dot active" data-scene="0" title="Hero"></div>
+        <div class="scene-dot" data-scene="1" title="Context"></div>
+        <div class="scene-dot" data-scene="2" title="Mechanical"></div>
+        <div class="scene-dot" data-scene="3" title="Electronics"></div>
+        <div class="scene-dot" data-scene="4" title="Connectivity"></div>
+        <div class="scene-dot software" data-scene="5" title="Software"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 w-full z-50 px-6 lg:px-12 py-6">
+        <div class="flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div
+                    class="w-10 h-10 rounded-xl bg-gradient-to-br from-neon-cyan to-electric-purple flex items-center justify-center">
+                    <span class="font-clash font-bold text-lg text-void">A</span>
+                </div>
+                <span class="font-clash font-semibold text-xl tracking-tight">ANTARES</span>
+                <span class="font-mono text-xs text-neon-cyan bg-neon-cyan/10 px-2 py-1 rounded-full">V8</span>
+            </div>
+            <div class="hidden md:flex items-center gap-6 font-inter text-sm text-white/60">
+                <a href="#pinned-container" class="hover:text-white transition-colors"
+                    data-lang="nav_technology">Technology</a>
+                <a href="#specs" class="hover:text-white transition-colors" data-lang="nav_specs">Specifications</a>
+
+                <!-- Language Switcher -->
+                <div class="lang-switcher" id="langSwitcher">
+                    <button class="lang-btn active" data-lang-switch="tr" onclick="changeLanguage('tr')">TR</button>
+                    <div class="lang-divider"></div>
+                    <button class="lang-btn" data-lang-switch="en" onclick="changeLanguage('en')">EN</button>
+                </div>
+
+                <a href="#contact" class="glass-panel px-5 py-2.5 text-white hover:bg-white/10 transition-all"
+                    data-lang="nav_contact">Contact</a>
+            </div>
+        </div>
+    </nav>
 
     <!-- ========== HERO SECTION ========== -->
-    <section id="hero" class="hero-bg relative min-h-screen flex items-center justify-center overflow-hidden">
-        <!-- Floating Particles -->
-        <div class="absolute inset-0 overflow-hidden pointer-events-none">
-            <div class="particle" style="top: 20%; left: 10%;"></div>
-            <div class="particle" style="top: 60%; left: 25%; animation-delay: -2s;"></div>
-            <div class="particle" style="top: 30%; left: 70%; animation-delay: -4s; background: #bc13fe;"></div>
-            <div class="particle" style="top: 80%; left: 85%; animation-delay: -6s;"></div>
-            <div class="particle" style="top: 45%; left: 50%; animation-delay: -3s; background: #bc13fe;"></div>
+    <section id="hero" class="relative h-screen flex items-center justify-center overflow-hidden">
+        <!-- Hero Background Image -->
+        <div class="absolute inset-0">
+            <img id="hero-bg" src="hero.png" alt="ANTARES V8 Capsule at sunset in excavation site"
+                class="w-full h-full object-cover opacity-50">
+            <div class="absolute inset-0 bg-gradient-to-b from-void/60 via-void/30 to-void"></div>
         </div>
 
-        <!-- Hero Background Image -->
-        <div class="absolute inset-0 z-0">
-            <img id="hero-bg-image" src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=1920&q=80"
-                alt="Antares Capsule" class="w-full h-full object-cover opacity-20">
-            <div class="absolute inset-0 bg-gradient-to-b from-space-black/50 via-transparent to-space-black"></div>
-        </div>
+        <!-- Floating Particles Container -->
+        <div id="particles" class="absolute inset-0 pointer-events-none overflow-hidden"></div>
 
         <!-- Hero Content -->
         <div class="relative z-10 text-center px-6 max-w-5xl mx-auto">
-            <!-- Eyebrow Text -->
-            <div class="hero-eyebrow flex items-center justify-center gap-3 mb-8 opacity-0">
-                <div class="w-12 h-px bg-neon-cyan"></div>
-                <span class="text-neon-cyan text-sm tracking-[0.3em] uppercase font-medium">Arkeolojik Koruma
-                    Sistemi</span>
-                <div class="w-12 h-px bg-neon-cyan"></div>
+            <!-- Version Badge -->
+            <div class="hero-badge mb-6 inline-flex items-center gap-2 glass-panel px-4 py-2 opacity-0">
+                <span class="w-2 h-2 rounded-full bg-neon-cyan animate-pulse"></span>
+                <span class="font-mono text-xs text-neon-cyan tracking-widest">VERSION 8.0 • AUTONOMOUS ECOSYSTEM</span>
             </div>
 
             <!-- Main Title -->
-            <h1 class="hero-title text-7xl md:text-9xl font-bold tracking-tight mb-6 opacity-0">
+            <h1
+                class="hero-title font-clash font-bold text-6xl md:text-8xl lg:text-[140px] leading-none tracking-tight mb-6 opacity-0">
                 <span
-                    class="bg-gradient-to-r from-soft-white via-neon-cyan to-electric-purple bg-clip-text text-transparent">
-                    ANTARES
-                </span>
+                    class="block bg-gradient-to-r from-white via-neon-cyan to-electric-purple bg-clip-text text-transparent text-glow-cyan">ANTARES</span>
             </h1>
 
-            <!-- Version Badge -->
-            <div class="hero-badge inline-flex items-center gap-2 glass rounded-full px-4 py-2 mb-8 opacity-0">
-                <div class="w-2 h-2 bg-neon-cyan rounded-full animate-pulse"></div>
-                <span class="text-sm text-soft-white/80">V8 • Otonom Kapsül</span>
-            </div>
-
             <!-- Subtitle -->
-            <p class="hero-subtitle text-2xl md:text-4xl text-soft-white/90 font-light mb-12 opacity-0">
-                Geçmişi Koru. Geleceği İnşa Et.
+            <p class="hero-subtitle font-inter text-xl md:text-2xl text-white/80 max-w-2xl mx-auto mb-4 opacity-0"
+                data-lang="hero_subtitle">
+                Autonomous Preservation Ecosystem
+            </p>
+            <p class="hero-desc font-inter text-lg text-white/50 max-w-xl mx-auto mb-10 opacity-0"
+                data-lang="hero_tagline">
+                Protect the past. Build the future.
             </p>
 
-            <!-- CTA Button -->
-            <div class="hero-cta opacity-0">
-                <a href="#pinned-section"
-                    class="group inline-flex items-center gap-3 glass-strong gradient-border rounded-full px-8 py-4 transition-all duration-300 hover:scale-105">
-                    <span class="text-soft-white font-medium">Keşfet</span>
-                    <svg class="w-5 h-5 text-neon-cyan transition-transform duration-300 group-hover:translate-y-1"
-                        fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
-                    </svg>
+            <!-- CTA Buttons -->
+            <div class="hero-cta flex flex-col sm:flex-row items-center justify-center gap-4 opacity-0">
+                <a href="#pinned-container"
+                    class="group px-8 py-4 bg-gradient-to-r from-neon-cyan to-neon-cyan/80 text-void font-clash font-semibold rounded-full hover:shadow-[0_0_40px_rgba(0,242,255,0.4)] transition-all duration-300">
+                    <span data-lang="hero_cta">Explore Technology</span>
+                    <span class="inline-block ml-2 group-hover:translate-x-1 transition-transform">→</span>
                 </a>
+                <button class="px-8 py-4 glass-panel text-white font-clash font-medium hover:bg-white/10 transition-all"
+                    data-lang="hero_demo">
+                    Watch Demo
+                </button>
             </div>
         </div>
 
         <!-- Scroll Indicator -->
-        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-50">
-            <span class="text-xs tracking-widest uppercase text-soft-white/50">Scroll</span>
-            <div class="w-6 h-10 border border-soft-white/30 rounded-full flex items-start justify-center p-2">
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 opacity-50">
+            <span class="font-mono text-xs text-white/40 tracking-widest" data-lang="scroll_explore">SCROLL TO
+                EXPLORE</span>
+            <div class="w-6 h-10 rounded-full border-2 border-white/20 flex items-start justify-center p-2">
                 <div class="w-1.5 h-3 bg-neon-cyan rounded-full animate-bounce"></div>
             </div>
         </div>
     </section>
 
-    <!-- ========== MASTER PINNED SECTION ========== -->
-    <section id="pinned-section" class="relative bg-space-black">
-        <!-- Section Header -->
-        <div class="container mx-auto px-6 py-24 text-center">
-            <h2 class="text-4xl md:text-5xl font-bold mb-4">
-                <span class="text-glow-cyan text-neon-cyan">Teknoloji</span> Hikayemiz
-            </h2>
-            <p class="text-soft-white/60 max-w-2xl mx-auto">
-                Antares V8, arkeolojik eserleri mikroklima şokundan koruyan ilk otonom kapsüldür. İşte bu yolculuğun her
-                adımı.
-            </p>
-            <div class="line-glow mt-12 max-w-md mx-auto"></div>
-        </div>
+    <!-- ========== MASTER PINNED SECTION (600vh for 6 scenes) ========== -->
+    <section id="pinned-container" class="relative" style="height: 600vh;">
+        <!-- Sticky Wrapper -->
+        <div id="sticky-wrapper" class="h-screen w-full flex items-center justify-center overflow-hidden">
 
-        <!-- Pinned Wrapper -->
-        <div class="pinned-wrapper lg:flex lg:items-start">
-            <!-- Visual Stage (Sticky on Desktop) -->
-            <div
-                class="visual-container lg:w-1/2 lg:sticky lg:top-0 lg:h-screen flex items-center justify-center p-6 lg:p-12">
-                <div
-                    class="visual-stage relative w-full max-w-2xl aspect-video rounded-3xl overflow-hidden glass-strong gradient-border glow-cyan">
-                    <!-- Step 1 Image: Excavation / Soil Sensor -->
-                    <img id="stage-image-1" src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=80"
-                        alt="Kazı Alanı - Toprak Sensörü" class="stage-image active">
+            <!-- Central Visual Stage -->
+            <div id="stage"
+                class="relative w-full max-w-5xl h-[65vh] mx-6 lg:mx-12 rounded-3xl overflow-hidden glow-cyan">
 
-                    <!-- Step 2 Image: Capsule 3D Render -->
-                    <img id="stage-image-2"
-                        src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=1200&q=80"
-                        alt="Kapsül 3D Render" class="stage-image">
+                <!-- Image 0: Hero (shown briefly at start of scroll) -->
+                <img id="img-hero-stage" src="hero.png" alt="ANTARES V8 Capsule overview" class="stage-image active">
 
-                    <!-- Step 3 Image: Arduino / Circuit Close-up -->
-                    <img id="stage-image-3"
-                        src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=1200&q=80"
-                        alt="Arduino Devre Yakın Çekim" class="stage-image">
+                <!-- Image 1: Context - Soil Sensor / Excavation -->
+                <img id="img-context" src="scene2.png" alt="YL-69 Soil Moisture Sensor in excavation context"
+                    class="stage-image">
 
-                    <!-- Step 4 Image: ESP32 Web Interface on Phone -->
-                    <img id="stage-image-4"
-                        src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=1200&q=80"
-                        alt="ESP32 Web Arayüzü" class="stage-image">
+                <!-- Image 2: Mechanical - Capsule Body -->
+                <img id="img-mechanical" src="scene5.png" alt="Creality K1 Max printed Hyper PLA capsule structure"
+                    class="stage-image">
 
-                    <!-- Step 5 Image: Antares Studio Software on Laptop -->
-                    <img id="stage-image-5" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&q=80"
-                        alt="Antares Studio Yazılımı" class="stage-image">
+                <!-- Image 3: Electronics - Arduino & Circuits -->
+                <img id="img-electronics" src="scene1.png" alt="Arduino Uno R3, LCD Display, internal wiring"
+                    class="stage-image">
 
-                    <!-- Image Overlay Gradient -->
-                    <div
-                        class="absolute inset-0 bg-gradient-to-t from-space-black/60 via-transparent to-transparent pointer-events-none">
+                <!-- Image 4: Connectivity - ESP32 Dashboard -->
+                <img id="img-connectivity" src="scene4.png" alt="Smartphone showing ESP32-CAM web dashboard"
+                    class="stage-image">
+
+                <!-- Image 5: Software - Antares Studio (Placeholder until you add scene5.png) -->
+                <img id="img-software" src="scene3.png" alt="Antares Studio Python App with Point Cloud visualization"
+                    class="stage-image">
+
+                <!-- Gradient Overlay -->
+                <div class="absolute inset-0 gradient-overlay pointer-events-none"></div>
+            </div>
+
+            <!-- ========== TEXT CARDS ========== -->
+
+            <!-- Scene 0: Hero Introduction (on-stage) - VISIBLE BY DEFAULT -->
+            <div id="card-hero" class="text-card bottom-8 left-1/2 -translate-x-1/2 max-w-2xl w-full px-6"
+                style="opacity: 1; transform: translateX(-50%) translateY(0);">
+                <div class="glass-panel-strong glow-cyan p-8 text-center">
+                    <h2 class="font-clash font-bold text-3xl md:text-5xl mb-4 text-glow-cyan">
+                        ANTARES V8
+                    </h2>
+                    <p class="font-inter text-white/70 text-lg leading-relaxed" data-lang="card_hero_desc">
+                        Autonomous Preservation Ecosystem — Protecting artifacts from the moment they leave the soil.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Scene 1: Problem & Context -->
+            <div id="card-context" class="text-card bottom-8 left-6 lg:left-12 max-w-xl">
+                <div class="glass-panel-strong glow-cyan p-8">
+                    <div class="flex items-center gap-4 mb-5">
+                        <div class="step-number">01</div>
+                        <span class="font-mono text-xs text-red-400 tracking-widest uppercase"
+                            data-lang="scene1_label">Critical Issue</span>
+                    </div>
+                    <h2 class="font-clash font-bold text-3xl md:text-4xl mb-4 text-glow-cyan" data-lang="scene1_title">
+                        Soil Memory &<br><span class="text-electric-purple">Context Shock</span>
+                    </h2>
+                    <p class="font-inter text-white/70 leading-relaxed mb-6" data-lang="scene1_desc">
+                        Artifacts survive centuries in stable underground conditions. The moment of excavation exposes
+                        them
+                        to <strong class="text-neon-cyan">sudden environmental changes</strong> — humidity spikes,
+                        temperature
+                        fluctuations, and oxidation begin <strong class="text-red-400">within seconds</strong>.
+                    </p>
+                    <div class="code-block">
+                        <span class="text-neon-cyan" data-lang="scene1_code_title">// Environmental Threat
+                            Analysis</span><br>
+                        <span class="text-white/60">Sensor:</span> <span class="text-green-400">YL-69 Soil
+                            Moisture</span><br>
+                        <span class="text-white/60">Humidity Delta:</span> <span class="text-red-400">+45% RH</span><br>
+                        <span class="text-white/60">Temp Variance:</span> <span class="text-red-400">±12°C</span><br>
+                        <span class="text-white/60">Oxidation Risk:</span> <span class="text-red-400">CRITICAL</span>
                     </div>
                 </div>
             </div>
 
-            <!-- Story Panels Container -->
-            <div class="story-container lg:w-1/2">
-
-                <!-- STEP 1: Problem / Context -->
-                <div class="story-panel min-h-screen flex items-center p-6 lg:p-12" data-step="1">
-                    <div class="story-card glass-strong gradient-border rounded-3xl p-8 lg:p-12 max-w-xl">
-                        <div class="flex items-center gap-4 mb-6">
-                            <div class="step-number">01</div>
-                            <span class="text-neon-cyan text-sm tracking-widest uppercase">Problem & Bağlam</span>
-                        </div>
-                        <h3 class="text-3xl lg:text-4xl font-bold mb-6 leading-tight">
-                            Toprak Hafızası & <br>
-                            <span class="text-glow-purple text-electric-purple">Mikroklima Şoku</span>
-                        </h3>
-                        <p class="text-soft-white/70 text-lg leading-relaxed mb-6">
-                            Arkeolojik eserler yüzyıllarca stabil bir ortamda korunur. Kazı anında nem, sıcaklık ve ışık
-                            değişimi eseri <strong class="text-neon-cyan">dakikalar içinde</strong> tahrip edebilir.
-                        </p>
-                        <div class="flex items-center gap-3 text-sm text-soft-white/50">
-                            <svg class="w-5 h-5 text-electric-purple" fill="none" stroke="currentColor"
-                                viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                            </svg>
-                            <span>YL-69 Toprak Nem Sensörü ile Referans Ölçümü</span>
-                        </div>
+            <!-- Scene 2: Mechanical / The Armor -->
+            <div id="card-mechanical" class="text-card bottom-8 right-6 lg:right-12 max-w-xl">
+                <div class="glass-panel-strong glow-cyan p-8">
+                    <div class="flex items-center gap-4 mb-5">
+                        <div class="step-number">02</div>
+                        <span class="font-mono text-xs text-neon-cyan tracking-widest uppercase"
+                            data-lang="scene2_label">Hardware Layer</span>
+                    </div>
+                    <h2 class="font-clash font-bold text-3xl md:text-4xl mb-4 text-glow-cyan" data-lang="scene2_title">
+                        Creality K1 Max &<br><span class="text-white/60">Hyper PLA Armor</span>
+                    </h2>
+                    <p class="font-inter text-white/70 leading-relaxed mb-6" data-lang="scene2_desc">
+                        Modular cylindrical capsule with <strong class="text-electric-purple">double-wall thermal
+                            isolation</strong>.
+                        Impact-resistant Hyper PLA withstands harsh field conditions while maintaining hermetic sealing
+                        around the artifact envelope.
+                    </p>
+                    <div class="code-block">
+                        <span class="text-neon-cyan">// Fabrication Specs</span><br>
+                        <span class="text-white/60">Printer:</span> <span class="text-green-400">Creality K1
+                            Max</span><br>
+                        <span class="text-white/60">Material:</span> <span class="text-green-400">Hyper PLA</span><br>
+                        <span class="text-white/60">Build Volume:</span> <span
+                            class="text-green-400">300×300×300mm</span><br>
+                        <span class="text-white/60">Wall Type:</span> <span class="text-green-400">Double
+                            Isolated</span>
                     </div>
                 </div>
-
-                <!-- STEP 2: Mechanical / Body -->
-                <div class="story-panel min-h-screen flex items-center p-6 lg:p-12" data-step="2">
-                    <div class="story-card glass-strong gradient-border rounded-3xl p-8 lg:p-12 max-w-xl">
-                        <div class="flex items-center gap-4 mb-6">
-                            <div class="step-number">02</div>
-                            <span class="text-neon-cyan text-sm tracking-widest uppercase">Mekanik & Gövde</span>
-                        </div>
-                        <h3 class="text-3xl lg:text-4xl font-bold mb-6 leading-tight">
-                            Creality K1 Max & <br>
-                            <span class="text-glow-cyan text-neon-cyan">Hyper PETG Zırh</span>
-                        </h3>
-                        <p class="text-soft-white/70 text-lg leading-relaxed mb-6">
-                            Modüler, silindirik ve <strong class="text-electric-purple">çift duvarlı izolasyon</strong>
-                            yapısına sahip kapsül, Creality K1 Max ile Hyper PETG malzemeden basıldı.
-                        </p>
-                        <div class="grid grid-cols-2 gap-4 mt-8">
-                            <div class="glass rounded-xl p-4 text-center">
-                                <div class="text-2xl font-bold text-neon-cyan mb-1">300mm³</div>
-                                <div class="text-xs text-soft-white/50">Baskı Hacmi</div>
-                            </div>
-                            <div class="glass rounded-xl p-4 text-center">
-                                <div class="text-2xl font-bold text-electric-purple mb-1">PETG</div>
-                                <div class="text-xs text-soft-white/50">Malzeme Tipi</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- STEP 3: Electronic / Brain -->
-                <div class="story-panel min-h-screen flex items-center p-6 lg:p-12" data-step="3">
-                    <div class="story-card glass-strong gradient-border rounded-3xl p-8 lg:p-12 max-w-xl">
-                        <div class="flex items-center gap-4 mb-6">
-                            <div class="step-number">03</div>
-                            <span class="text-neon-cyan text-sm tracking-widest uppercase">Elektronik & Beyin</span>
-                        </div>
-                        <h3 class="text-3xl lg:text-4xl font-bold mb-6 leading-tight">
-                            PID Kontrol & <br>
-                            <span class="text-glow-purple text-electric-purple">Otonom Karar</span>
-                        </h3>
-                        <p class="text-soft-white/70 text-lg leading-relaxed mb-6">
-                            <strong class="text-neon-cyan">Arduino Uno R3</strong> ana beyin olarak PID kontrol
-                            algoritmasını çalıştırır. DHT22 ile iç iklimi izler, 20x4 LCD ekranda anlık durumu gösterir.
-                        </p>
-                        <div class="space-y-3 mt-8">
-                            <div class="flex items-center gap-3">
-                                <div class="w-2 h-2 bg-neon-cyan rounded-full"></div>
-                                <span class="text-soft-white/70">Arduino Uno R3 - Ana İşlemci</span>
-                            </div>
-                            <div class="flex items-center gap-3">
-                                <div class="w-2 h-2 bg-electric-purple rounded-full"></div>
-                                <span class="text-soft-white/70">DHT22 - İç İklim Sensörü</span>
-                            </div>
-                            <div class="flex items-center gap-3">
-                                <div class="w-2 h-2 bg-neon-cyan rounded-full"></div>
-                                <span class="text-soft-white/70">20x4 LCD - Durum Ekranı</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- STEP 4: Vision / Web -->
-                <div class="story-panel min-h-screen flex items-center p-6 lg:p-12" data-step="4">
-                    <div class="story-card glass-strong gradient-border rounded-3xl p-8 lg:p-12 max-w-xl">
-                        <div class="flex items-center gap-4 mb-6">
-                            <div class="step-number">04</div>
-                            <span class="text-neon-cyan text-sm tracking-widest uppercase">Vizyon & IoT</span>
-                        </div>
-                        <h3 class="text-3xl lg:text-4xl font-bold mb-6 leading-tight">
-                            Canlı İzleme & <br>
-                            <span class="text-glow-cyan text-neon-cyan">Kablosuz Aktarım</span>
-                        </h3>
-                        <p class="text-soft-white/70 text-lg leading-relaxed mb-6">
-                            <strong class="text-electric-purple">ESP32-CAM</strong> modülü, eser görüntüsünü canlı
-                            olarak web arayüzüne aktarır. Telefonunuzdan veya bilgisayarınızdan anlık takip.
-                        </p>
-                        <div class="glass rounded-xl p-6 mt-8 flex items-center gap-4">
-                            <div
-                                class="w-12 h-12 bg-gradient-to-br from-neon-cyan/20 to-electric-purple/20 rounded-xl flex items-center justify-center">
-                                <svg class="w-6 h-6 text-neon-cyan" fill="none" stroke="currentColor"
-                                    viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0">
-                                    </path>
-                                </svg>
-                            </div>
-                            <div>
-                                <div class="text-soft-white font-medium">WiFi Bağlantısı</div>
-                                <div class="text-sm text-soft-white/50">ESP32-CAM Görüntü Aktarımı</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- STEP 5: FINAL - Software / Digital Twin -->
-                <div class="story-panel min-h-screen flex items-center p-6 lg:p-12" data-step="5">
-                    <div class="story-card glass-strong gradient-border rounded-3xl p-8 lg:p-12 max-w-xl glow-purple">
-                        <div class="flex items-center gap-4 mb-6">
-                            <div class="step-number" style="border-color: #bc13fe; color: #bc13fe;">05</div>
-                            <span class="text-electric-purple text-sm tracking-widest uppercase">Final • Yazılım</span>
-                        </div>
-                        <h3 class="text-3xl lg:text-4xl font-bold mb-6 leading-tight">
-                            Dijital İkiz & <br>
-                            <span class="text-glow-purple text-electric-purple">Temassız Analiz</span>
-                        </h3>
-                        <p class="text-soft-white/70 text-lg leading-relaxed mb-6">
-                            <strong class="text-neon-cyan">Antares Studio</strong> - Python/PyQt6 ile geliştirilen
-                            yazılım. Eserin <strong class="text-electric-purple">Point Cloud & Mesh</strong> formatında
-                            dijital ikizini oluşturur.
-                        </p>
-                        <div
-                            class="bg-gradient-to-r from-neon-cyan/10 to-electric-purple/10 rounded-xl p-6 mt-8 border border-electric-purple/30">
-                            <div class="flex items-center gap-2 mb-3">
-                                <svg class="w-5 h-5 text-electric-purple" fill="none" stroke="currentColor"
-                                    viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
-                                    </path>
-                                </svg>
-                                <span class="text-electric-purple font-medium">Antares Studio</span>
-                            </div>
-                            <p class="text-sm text-soft-white/60">
-                                Esere fiziksel temas olmadan 3D modelleme ve analiz. Arkeolojide yeni bir çağ.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
             </div>
+
+            <!-- Scene 3: Electronics / The Brain -->
+            <div id="card-electronics" class="text-card top-1/2 -translate-y-1/2 left-6 lg:left-12 max-w-xl">
+                <div class="glass-panel-strong glow-cyan p-8">
+                    <div class="flex items-center gap-4 mb-5">
+                        <div class="step-number">03</div>
+                        <span class="font-mono text-xs text-neon-cyan tracking-widest uppercase"
+                            data-lang="scene3_label">Control System</span>
+                    </div>
+
+                    <h2 class="font-clash font-bold text-3xl md:text-4xl mb-4 text-glow-cyan" data-lang="scene3_title">
+                        Active Stabilization &<br><span class="text-electric-purple">Arduino Core</span>
+                    </h2>
+
+                    <p class="font-inter text-white/70 leading-relaxed mb-6" data-lang="scene3_desc">
+                        The <strong class="text-neon-cyan">Arduino Uno R3</strong> executes real-time active
+                        stabilization algorithms.
+                        It processes data from DHT22 sensors and drives ceramic heaters + dual fans to maintain an
+                        artifact-safe environment with <strong class="text-electric-purple">millisecond
+                            precision</strong>.
+                    </p>
+
+                    <div class="code-block">
+                        <span class="text-neon-cyan">// arduino.ino — Stabilization Logic</span><br>
+                        <span class="text-white/60">Platform:</span> <span class="text-green-400">Arduino Uno
+                            R3</span><br>
+                        <span class="text-white/60">Processor:</span> <span class="text-green-400">ATmega328P @
+                            16MHz</span><br>
+                        <span class="text-white/60">Actuators:</span> <span class="text-green-400">Ceramic Heater + 2×
+                            Fans</span><br>
+                        <span class="text-white/60">Algorithm:</span> <span class="text-green-400">PID Closed-Loop
+                            Control</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scene 4: Connectivity / The Eye -->
+            <div id="card-connectivity" class="text-card top-1/2 -translate-y-1/2 right-6 lg:right-12 max-w-xl">
+                <div class="glass-panel-strong glow-cyan p-8">
+                    <div class="flex items-center gap-4 mb-5">
+                        <div class="step-number">04</div>
+                        <span class="font-mono text-xs text-neon-cyan tracking-widest uppercase animate-pulse"
+                            data-lang="scene4_label">Live</span>
+                    </div>
+                    <h2 class="font-clash font-bold text-3xl md:text-4xl mb-4 text-glow-cyan" data-lang="scene4_title">
+                        ESP32-CAM &<br><span class="text-white/60">IoT Dashboard</span>
+                    </h2>
+                    <p class="font-inter text-white/70 leading-relaxed mb-6" data-lang="scene4_desc">
+                        <strong class="text-electric-purple">AI-Thinker ESP32-CAM</strong> hosts a self-contained web
+                        server.
+                        Real-time MJPEG video stream and sensor telemetry accessible from any device on the field
+                        network —
+                        <strong class="text-neon-cyan">zero cloud dependency</strong>.
+                    </p>
+                    <div class="code-block">
+                        <span class="text-neon-cyan">// esp32.ino — Vision/IoT Module</span><br>
+                        <span class="text-white/60">Board:</span> <span class="text-green-400">AI-Thinker
+                            ESP32-CAM</span><br>
+                        <span class="text-white/60">Stream:</span> <span class="text-green-400">MJPEG @
+                            640×480</span><br>
+                        <span class="text-white/60">Server:</span> <span class="text-green-400">HTTP :80
+                            (Async)</span><br>
+                        <span class="text-white/60">Network:</span> <span class="text-green-400">WiFi AP/STA Mode</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scene 5: Software / The Digital Twin (FINALE) -->
+            <div id="card-software" class="text-card bottom-8 left-1/2 -translate-x-1/2 max-w-2xl w-full px-6">
+                <div class="glass-panel-strong glow-purple p-8 lg:p-10">
+                    <div class="flex items-center gap-4 mb-5">
+                        <div class="step-number purple">05</div>
+                        <span class="font-mono text-xs text-electric-purple tracking-widest uppercase animate-pulse"
+                            data-lang="scene5_label">Final
+                            • The Grand Finale</span>
+                    </div>
+                    <h2 class="font-clash font-bold text-3xl md:text-5xl mb-4 text-glow-purple"
+                        data-lang="scene5_title">
+                        Digital Twin &<br><span class="text-white/60">Contactless Analysis</span>
+                    </h2>
+                    <p class="font-inter text-white/70 leading-relaxed mb-6" data-lang="scene5_desc">
+                        <strong class="text-neon-cyan">Antares Studio</strong> — A Python/PyQt6 desktop application.
+                        Photogrammetry pipeline processes ESP32-CAM frames into high-fidelity
+                        <strong class="text-electric-purple">Point Cloud & Mesh</strong> reconstructions.
+                        Preserve artifacts digitally for eternity — without ever touching them.
+                    </p>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="code-block code-block-purple">
+                            <span class="text-electric-purple">// antares_studio.py</span><br>
+                            <span class="text-white/60">Framework:</span> <span class="text-green-400">PyQt6</span><br>
+                            <span class="text-white/60">3D Engine:</span> <span class="text-green-400">Open3D</span><br>
+                            <span class="text-white/60">Output:</span> <span class="text-green-400">.ply, .obj,
+                                .stl</span>
+                        </div>
+                        <div class="code-block code-block-purple">
+                            <span class="text-electric-purple">// Capabilities</span><br>
+                            <span class="text-white/60">→</span> <span class="text-green-400">Point Cloud
+                                Generation</span><br>
+                            <span class="text-white/60">→</span> <span class="text-green-400">Mesh
+                                Reconstruction</span><br>
+                            <span class="text-white/60">→</span> <span class="text-green-400">Digital Twin Export</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </section>
 
-    <!-- ========== GALLERY SECTION ========== -->
-    <section id="gallery" class="relative bg-space-black py-24 lg:py-32">
-        <div class="container mx-auto px-6">
-            <!-- Section Header -->
-            <div class="text-center mb-16">
-                <span class="text-neon-cyan text-sm tracking-[0.3em] uppercase font-medium">Sistem Bileşenleri</span>
-                <h2 class="text-4xl md:text-5xl font-bold mt-4 mb-6">
-                    <span class="text-glow-cyan text-neon-cyan">Detay</span> Galerisi
-                </h2>
-                <div class="line-glow max-w-xs mx-auto"></div>
+    <!-- ========== SPECS SECTION ========== -->
+    <section id="specs" class="relative py-32 px-6 lg:px-12">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-20">
+                <span class="font-mono text-xs text-neon-cyan tracking-widest uppercase mb-4 block"
+                    data-lang="specs_label">Technical
+                    Specifications</span>
+                <h2 class="font-clash font-bold text-4xl md:text-6xl" data-lang="specs_title">Full System Overview</h2>
             </div>
 
-            <!-- Gallery Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-
-                <!-- Gallery Item 1: Capsule Body -->
-                <div class="gallery-item relative group rounded-2xl overflow-hidden glass gradient-border">
-                    <img id="gallery-image-1"
-                        src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&q=80"
-                        alt="Kapsül Gövdesi" class="w-full aspect-square object-cover">
+            <div class="grid md:grid-cols-3 gap-6">
+                <!-- Spec Card 1: Processing -->
+                <div class="glass-panel p-8 hover:bg-white/5 transition-all group">
                     <div
-                        class="gallery-overlay absolute inset-0 bg-gradient-to-t from-space-black via-space-black/50 to-transparent opacity-0 transition-opacity duration-300 flex items-end p-6">
-                        <div>
-                            <h4 class="text-xl font-bold text-soft-white mb-2">Kapsül Gövdesi</h4>
-                            <p class="text-soft-white/70 text-sm">Hyper PETG, Çift Duvarlı İzolasyon</p>
+                        class="w-14 h-14 rounded-2xl bg-neon-cyan/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <svg class="w-7 h-7 text-neon-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
+                        </svg>
+                    </div>
+                    <h3 class="font-clash font-semibold text-xl mb-3" data-lang="spec1_title">Processing Power</h3>
+                    <p class="font-inter text-white/60 text-sm leading-relaxed mb-4" data-lang="spec1_desc">
+                        Dual-core architecture with dedicated sensor polling and actuation threads.
+                    </p>
+                    <div class="space-y-2 font-mono text-xs">
+                        <div class="flex justify-between"><span class="text-white/40">Arduino</span><span
+                                class="text-neon-cyan">16 MHz</span></div>
+                        <div class="flex justify-between"><span class="text-white/40">ESP32</span><span
+                                class="text-neon-cyan">240 MHz</span></div>
+                        <div class="flex justify-between"><span class="text-white/40"
+                                data-lang="spec_memory">Memory</span><span class="text-neon-cyan">520 KB</span></div>
+                    </div>
+                </div>
+
+                <!-- Spec Card 2: Power -->
+                <div class="glass-panel p-8 hover:bg-white/5 transition-all group">
+                    <div
+                        class="w-14 h-14 rounded-2xl bg-neon-cyan/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <svg class="w-7 h-7 text-neon-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                d="M13 10V3L4 14h7v7l9-11h-7z" />
+                        </svg>
+                    </div>
+                    <h3 class="font-clash font-semibold text-xl mb-3" data-lang="spec2_title">Power Efficiency</h3>
+                    <p class="font-inter text-white/60 text-sm leading-relaxed mb-4" data-lang="spec2_desc">
+                        Optimized for extended field deployment with intelligent power management.
+                    </p>
+                    <div class="space-y-2 font-mono text-xs">
+                        <div class="flex justify-between"><span class="text-white/40">Active Draw</span><span
+                                class="text-neon-cyan">~850 mA</span></div>
+                        <div class="flex justify-between"><span class="text-white/40">Sleep Mode</span><span
+                                class="text-neon-cyan">~10 mA</span></div>
+                        <div class="flex justify-between"><span class="text-white/40"
+                                data-lang="spec_battery">Battery</span><span class="text-neon-cyan">18650 ×3</span>
                         </div>
                     </div>
                 </div>
 
-                <!-- Gallery Item 2: Arduino Board -->
-                <div class="gallery-item relative group rounded-2xl overflow-hidden glass gradient-border">
-                    <img id="gallery-image-2"
-                        src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&q=80"
-                        alt="Arduino Uno R3" class="w-full aspect-square object-cover">
+                <!-- Spec Card 3: 3D Resolution -->
+                <div class="glass-panel p-8 hover:bg-white/5 transition-all group">
                     <div
-                        class="gallery-overlay absolute inset-0 bg-gradient-to-t from-space-black via-space-black/50 to-transparent opacity-0 transition-opacity duration-300 flex items-end p-6">
-                        <div>
-                            <h4 class="text-xl font-bold text-soft-white mb-2">Arduino Uno R3</h4>
-                            <p class="text-soft-white/70 text-sm">Ana Beyin, PID Kontrol Algoritması</p>
+                        class="w-14 h-14 rounded-2xl bg-electric-purple/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <svg class="w-7 h-7 text-electric-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
+                        </svg>
+                    </div>
+                    <h3 class="font-clash font-semibold text-xl mb-3" data-lang="spec3_title">3D Resolution</h3>
+                    <p class="font-inter text-white/60 text-sm leading-relaxed mb-4" data-lang="spec3_desc">
+                        High-fidelity photogrammetric reconstruction for museum-grade digital twins.
+                    </p>
+                    <div class="space-y-2 font-mono text-xs">
+                        <div class="flex justify-between"><span class="text-white/40"
+                                data-lang="spec_points">Points</span><span class="text-electric-purple">~2M pts</span>
+                        </div>
+                        <div class="flex justify-between"><span class="text-white/40">Mesh Faces</span><span
+                                class="text-electric-purple">~500K</span></div>
+                        <div class="flex justify-between"><span class="text-white/40"
+                                data-lang="spec_texture">Texture</span><span class="text-electric-purple">4K Maps</span>
                         </div>
                     </div>
                 </div>
-
-                <!-- Gallery Item 3: ESP32-CAM -->
-                <div class="gallery-item relative group rounded-2xl overflow-hidden glass gradient-border">
-                    <img id="gallery-image-3"
-                        src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&q=80"
-                        alt="ESP32-CAM Modülü" class="w-full aspect-square object-cover">
-                    <div
-                        class="gallery-overlay absolute inset-0 bg-gradient-to-t from-space-black via-space-black/50 to-transparent opacity-0 transition-opacity duration-300 flex items-end p-6">
-                        <div>
-                            <h4 class="text-xl font-bold text-soft-white mb-2">ESP32-CAM</h4>
-                            <p class="text-soft-white/70 text-sm">Canlı Görüntü Aktarımı, WiFi</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Gallery Item 4: DHT22 Sensor -->
-                <div class="gallery-item relative group rounded-2xl overflow-hidden glass gradient-border">
-                    <img id="gallery-image-4" src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80"
-                        alt="DHT22 Sensör" class="w-full aspect-square object-cover">
-                    <div
-                        class="gallery-overlay absolute inset-0 bg-gradient-to-t from-space-black via-space-black/50 to-transparent opacity-0 transition-opacity duration-300 flex items-end p-6">
-                        <div>
-                            <h4 class="text-xl font-bold text-soft-white mb-2">DHT22 Sensör</h4>
-                            <p class="text-soft-white/70 text-sm">İç İklim İzleme, Sıcaklık & Nem</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Gallery Item 5: LCD Display -->
-                <div class="gallery-item relative group rounded-2xl overflow-hidden glass gradient-border">
-                    <img id="gallery-image-5"
-                        src="https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=800&q=80"
-                        alt="20x4 LCD Ekran" class="w-full aspect-square object-cover">
-                    <div
-                        class="gallery-overlay absolute inset-0 bg-gradient-to-t from-space-black via-space-black/50 to-transparent opacity-0 transition-opacity duration-300 flex items-end p-6">
-                        <div>
-                            <h4 class="text-xl font-bold text-soft-white mb-2">20x4 LCD Ekran</h4>
-                            <p class="text-soft-white/70 text-sm">Anlık Durum Gösterimi</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Gallery Item 6: Antares Studio -->
-                <div class="gallery-item relative group rounded-2xl overflow-hidden glass gradient-border glow-purple">
-                    <img id="gallery-image-6" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80"
-                        alt="Antares Studio" class="w-full aspect-square object-cover">
-                    <div
-                        class="gallery-overlay absolute inset-0 bg-gradient-to-t from-space-black via-space-black/50 to-transparent opacity-0 transition-opacity duration-300 flex items-end p-6">
-                        <div>
-                            <h4 class="text-xl font-bold text-soft-white mb-2">Antares Studio</h4>
-                            <p class="text-soft-white/70 text-sm">Dijital İkiz, Python/PyQt6</p>
-                        </div>
-                    </div>
-                </div>
-
             </div>
         </div>
     </section>
 
     <!-- ========== FOOTER ========== -->
-    <footer id="footer" class="relative bg-deep-black border-t border-soft-white/5">
-        <div class="container mx-auto px-6 py-16">
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-8">
-
-                <!-- Brand Column -->
-                <div class="lg:col-span-1">
+    <footer id="contact" class="relative py-20 px-6 lg:px-12 border-t border-white/10">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-4 gap-12">
+                <!-- Brand -->
+                <div class="md:col-span-2">
                     <div class="flex items-center gap-3 mb-6">
                         <div
-                            class="w-10 h-10 bg-gradient-to-br from-neon-cyan to-electric-purple rounded-xl flex items-center justify-center">
-                            <span class="text-space-black font-bold text-lg">A</span>
+                            class="w-12 h-12 rounded-xl bg-gradient-to-br from-neon-cyan to-electric-purple flex items-center justify-center">
+                            <span class="font-clash font-bold text-xl text-void">A</span>
                         </div>
-                        <span class="text-2xl font-bold text-soft-white">ANTARES</span>
-                        <span class="text-xs text-neon-cyan bg-neon-cyan/10 px-2 py-1 rounded-full">V8</span>
+                        <div>
+                            <span class="font-clash font-semibold text-2xl block">ANTARES</span>
+                            <span class="font-mono text-xs text-white/40">V8.0</span>
+                        </div>
                     </div>
-                    <p class="text-soft-white/60 leading-relaxed mb-6">
-                        Arkeolojik eserleri topraktan çıktığı an koruyan otonom kapsül sistemi. Geçmişi koruyoruz,
-                        geleceği inşa ediyoruz.
+                    <p class="font-inter text-white/60 leading-relaxed max-w-md mb-6" data-lang="footer_desc">
+                        Revolutionizing archaeological preservation through intelligent climate control,
+                        IoT connectivity, and non-invasive digital twin generation.
                     </p>
-                    <div class="flex items-center gap-4">
-                        <a href="#"
-                            class="w-10 h-10 glass rounded-full flex items-center justify-center transition-all duration-300 hover:bg-neon-cyan/20">
-                            <svg class="w-5 h-5 text-soft-white/70" fill="currentColor" viewBox="0 0 24 24">
-                                <path
-                                    d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
-                            </svg>
-                        </a>
-                        <a href="#"
-                            class="w-10 h-10 glass rounded-full flex items-center justify-center transition-all duration-300 hover:bg-electric-purple/20">
-                            <svg class="w-5 h-5 text-soft-white/70" fill="currentColor" viewBox="0 0 24 24">
-                                <path
-                                    d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z" />
-                            </svg>
-                        </a>
-                    </div>
+                    <p class="font-clash text-lg text-white/80" data-lang="footer_tagline">Protect the past. Build the
+                        future.</p>
                 </div>
 
-                <!-- Tech Stack Column -->
-                <div class="lg:col-span-1">
-                    <h4 class="text-soft-white font-semibold mb-6">Teknoloji Yığını</h4>
-                    <div class="space-y-4">
-                        <div class="flex items-center gap-3">
-                            <div class="w-8 h-8 bg-neon-cyan/10 rounded-lg flex items-center justify-center">
-                                <span class="text-neon-cyan text-xs font-bold">HW</span>
-                            </div>
-                            <div>
-                                <div class="text-soft-white text-sm">Arduino Uno R3 + ESP32-CAM</div>
-                                <div class="text-soft-white/50 text-xs">Donanım Platformu</div>
-                            </div>
-                        </div>
-                        <div class="flex items-center gap-3">
-                            <div class="w-8 h-8 bg-electric-purple/10 rounded-lg flex items-center justify-center">
-                                <span class="text-electric-purple text-xs font-bold">3D</span>
-                            </div>
-                            <div>
-                                <div class="text-soft-white text-sm">Creality K1 Max + Hyper PETG</div>
-                                <div class="text-soft-white/50 text-xs">3D Baskı Sistemi</div>
-                            </div>
-                        </div>
-                        <div class="flex items-center gap-3">
-                            <div class="w-8 h-8 bg-neon-cyan/10 rounded-lg flex items-center justify-center">
-                                <span class="text-neon-cyan text-xs font-bold">SW</span>
-                            </div>
-                            <div>
-                                <div class="text-soft-white text-sm">Python + PyQt6</div>
-                                <div class="text-soft-white/50 text-xs">Antares Studio Yazılımı</div>
-                            </div>
-                        </div>
-                    </div>
+                <!-- Technology Links -->
+                <div>
+                    <h4 class="font-clash font-semibold mb-6" data-lang="footer_technology">Technology</h4>
+                    <ul class="space-y-3 font-inter text-sm text-white/60">
+                        <li><a href="#" class="hover:text-white transition-colors" data-lang="footer_hardware">Hardware
+                                Design</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Firmware (Arduino)</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">ESP32-CAM Module</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Antares Studio</a></li>
+                    </ul>
                 </div>
 
-                <!-- Contact Column -->
-                <div class="lg:col-span-1">
-                    <h4 class="text-soft-white font-semibold mb-6">İletişim</h4>
-                    <div class="space-y-4">
-                        <a href="mailto:info@antares.dev"
-                            class="flex items-center gap-3 text-soft-white/70 hover:text-neon-cyan transition-colors">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
-                                </path>
-                            </svg>
-                            <span>info@antares.dev</span>
-                        </a>
-                        <a href="#"
-                            class="flex items-center gap-3 text-soft-white/70 hover:text-electric-purple transition-colors">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
-                                </path>
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                            </svg>
-                            <span>Türkiye</span>
-                        </a>
-                    </div>
+                <!-- Resources -->
+                <div>
+                    <h4 class="font-clash font-semibold mb-6" data-lang="footer_resources">Resources</h4>
+                    <ul class="space-y-3 font-inter text-sm text-white/60">
+                        <li><a href="#" class="hover:text-white transition-colors"
+                                data-lang="footer_docs">Documentation</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors" data-lang="footer_papers">Research
+                                Papers</a></li>
+                        <li><a href="https://github.com/ScRien/antareslab" target="_blank"
+                                class="hover:text-white transition-colors" data-lang="footer_opensource">Open
+                                Source</a></li>
+                        <li><a href="mailto:muhammedsahfidan@gmail.com" target="_blank"
+                                class="hover:text-white transition-colors" data-lang="footer_contact_team">Contact
+                                Team</a></li>
+                    </ul>
                 </div>
-
             </div>
 
-            <!-- Footer Bottom -->
             <div
-                class="border-t border-soft-white/5 mt-12 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
-                <p class="text-soft-white/40 text-sm">
-                    © 2026 Antares Project. Tüm hakları saklıdır.
-                </p>
-                <p class="text-soft-white/40 text-sm">
-                    Geçmişi Koru. Geleceği İnşa Et.
-                </p>
+                class="mt-16 pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4">
+                <p class="font-inter text-sm text-white/40" data-lang="footer_copyright">© 2026 ANTARES Project. Open
+                    Source Archaeological
+                    Innovation.</p>
+                <p class="font-mono text-xs text-white/30" data-lang="footer_passion">Built with passion for heritage
+                    preservation</p>
             </div>
         </div>
     </footer>
 
     <!-- ========== JAVASCRIPT ========== -->
     <script>
+        // Remove no-js class if JS is working
+        document.body.classList.remove('no-js');
+
         // ===== LENIS SMOOTH SCROLL =====
-        const lenis = new Lenis({
-            duration: 1.2,
-            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-            orientation: 'vertical',
-            smoothWheel: true,
-        });
+        let lenis;
+        try {
+            lenis = new Lenis({
+                duration: 1.2,
+                easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+                orientation: 'vertical',
+                smoothWheel: true,
+            });
 
-        function raf(time) {
-            lenis.raf(time);
+            function raf(time) {
+                lenis.raf(time);
+                requestAnimationFrame(raf);
+            }
             requestAnimationFrame(raf);
+
+            // Sync Lenis with GSAP ScrollTrigger
+            lenis.on('scroll', ScrollTrigger.update);
+            gsap.ticker.add((time) => {
+                lenis.raf(time * 1000);
+            });
+            gsap.ticker.lagSmoothing(0);
+        } catch (e) {
+            console.warn('Lenis initialization failed:', e);
         }
-        requestAnimationFrame(raf);
 
-        // Integrate Lenis with GSAP ScrollTrigger
-        lenis.on('scroll', ScrollTrigger.update);
-        gsap.ticker.add((time) => {
-            lenis.raf(time * 1000);
-        });
-        gsap.ticker.lagSmoothing(0);
-
-        // ===== HERO ANIMATIONS =====
-        gsap.registerPlugin(ScrollTrigger);
-
-        // Hero entrance animations
-        const heroTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
-
-        heroTl
-            .to('.hero-eyebrow', { opacity: 1, y: 0, duration: 0.8 }, 0.2)
-            .to('.hero-title', { opacity: 1, y: 0, duration: 1 }, 0.4)
-            .to('.hero-badge', { opacity: 1, y: 0, duration: 0.6 }, 0.7)
-            .to('.hero-subtitle', { opacity: 1, y: 0, duration: 0.8 }, 0.9)
-            .to('.hero-cta', { opacity: 1, y: 0, duration: 0.6 }, 1.1);
-
-        // Hero parallax on scroll
-        gsap.to('#hero-bg-image', {
-            yPercent: 30,
+        // ===== SCROLL PROGRESS BAR =====
+        gsap.to('#scrollProgress', {
+            width: '100%',
             ease: 'none',
             scrollTrigger: {
-                trigger: '#hero',
+                trigger: 'body',
                 start: 'top top',
-                end: 'bottom top',
-                scrub: 1
+                end: 'bottom bottom',
+                scrub: 0.3,
             }
         });
 
-        // ===== PINNED SECTION SCROLLYTELLING =====
-        const storyPanels = gsap.utils.toArray('.story-panel');
-        const stageImages = gsap.utils.toArray('.stage-image');
+        // ===== FLOATING PARTICLES =====
+        const particlesContainer = document.getElementById('particles');
+        if (particlesContainer) {
+            for (let i = 0; i < 30; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                if (Math.random() > 0.7) {
+                    particle.style.background = 'rgba(188, 19, 254, 0.4)';
+                }
+                particlesContainer.appendChild(particle);
 
-        storyPanels.forEach((panel, index) => {
-            const step = panel.dataset.step;
-            const card = panel.querySelector('.story-card');
+                gsap.to(particle, {
+                    y: -200 + Math.random() * 400,
+                    x: -100 + Math.random() * 200,
+                    opacity: 0,
+                    duration: 4 + Math.random() * 4,
+                    repeat: -1,
+                    delay: Math.random() * 2,
+                    ease: 'none',
+                });
+            }
+        }
 
-            // Create ScrollTrigger for each panel
-            ScrollTrigger.create({
-                trigger: panel,
-                start: 'top 60%',
-                end: 'bottom 40%',
-                onEnter: () => {
-                    // Activate corresponding image
-                    stageImages.forEach((img, i) => {
-                        if (i === index) {
-                            gsap.to(img, {
-                                opacity: 1,
-                                scale: 1,
-                                duration: 0.6,
-                                ease: 'power2.out'
-                            });
-                            img.classList.add('active');
-                        } else {
-                            gsap.to(img, {
-                                opacity: 0,
-                                scale: 1.1,
-                                duration: 0.4,
-                                ease: 'power2.in'
-                            });
-                            img.classList.remove('active');
-                        }
-                    });
+        // ===== REGISTER GSAP PLUGINS =====
+        gsap.registerPlugin(ScrollTrigger);
+        console.log('GSAP ScrollTrigger registered');
 
-                    // Animate story card in
-                    gsap.to(card, {
-                        opacity: 1,
-                        y: 0,
-                        duration: 0.8,
-                        ease: 'power3.out'
-                    });
-                },
-                onEnterBack: () => {
-                    // Activate corresponding image when scrolling back
-                    stageImages.forEach((img, i) => {
-                        if (i === index) {
-                            gsap.to(img, {
-                                opacity: 1,
-                                scale: 1,
-                                duration: 0.6,
-                                ease: 'power2.out'
-                            });
-                            img.classList.add('active');
-                        } else {
-                            gsap.to(img, {
-                                opacity: 0,
-                                scale: 1.1,
-                                duration: 0.4,
-                                ease: 'power2.in'
-                            });
-                            img.classList.remove('active');
-                        }
-                    });
+        // ===== HERO ANIMATIONS =====
+        const heroTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+        heroTl
+            .to('.hero-badge', { opacity: 1, y: 0, duration: 0.8 }, 0.2)
+            .to('.hero-title', { opacity: 1, y: 0, duration: 1.2 }, 0.4)
+            .to('.hero-subtitle', { opacity: 1, y: 0, duration: 1 }, 0.7)
+            .to('.hero-desc', { opacity: 1, y: 0, duration: 1 }, 0.9)
+            .to('.hero-cta', { opacity: 1, y: 0, duration: 1 }, 1.1);
 
-                    gsap.to(card, {
-                        opacity: 1,
-                        y: 0,
-                        duration: 0.8,
-                        ease: 'power3.out'
-                    });
-                },
-                onLeave: () => {
-                    // Animate story card out
-                    gsap.to(card, {
-                        opacity: 0,
-                        y: -30,
-                        duration: 0.4,
-                        ease: 'power2.in'
-                    });
-                },
-                onLeaveBack: () => {
-                    gsap.to(card, {
-                        opacity: 0,
-                        y: 30,
-                        duration: 0.4,
-                        ease: 'power2.in'
-                    });
+        // ===== MASTER PINNED SCROLL ANIMATION =====
+        const images = document.querySelectorAll('.stage-image');
+        const cards = {
+            hero: document.getElementById('card-hero'),
+            context: document.getElementById('card-context'),
+            mechanical: document.getElementById('card-mechanical'),
+            electronics: document.getElementById('card-electronics'),
+            connectivity: document.getElementById('card-connectivity'),
+            software: document.getElementById('card-software')
+        };
+        const sceneDots = document.querySelectorAll('.scene-dot');
+
+        // Check if mobile
+        const isMobile = window.innerWidth < 1024;
+
+        if (!isMobile) {
+            // Desktop: Full pinned experience
+            const masterTL = gsap.timeline({
+                scrollTrigger: {
+                    trigger: '#pinned-container',
+                    start: 'top top',
+                    end: 'bottom bottom',
+                    scrub: 1,
+                    pin: '#sticky-wrapper',
+                    anticipatePin: 1,
+                    onUpdate: (self) => {
+                        const progress = self.progress;
+                        const sceneIndex = Math.min(5, Math.floor(progress * 6));
+                        sceneDots.forEach((dot, i) => {
+                            dot.classList.toggle('active', i === sceneIndex);
+                        });
+                    }
                 }
             });
-        });
 
-        // ===== GALLERY ANIMATIONS =====
-        gsap.utils.toArray('.gallery-item').forEach((item, index) => {
-            gsap.from(item, {
-                opacity: 0,
-                y: 60,
-                scale: 0.95,
-                duration: 0.8,
-                ease: 'power3.out',
-                scrollTrigger: {
-                    trigger: item,
-                    start: 'top 85%',
-                    toggleActions: 'play none none reverse'
-                },
-                delay: index * 0.1
-            });
-        });
+            // Scene durations (each is ~16.67% of scroll = 1/6th)
+            const sceneDuration = 0.167;
+            const transitionDuration = 0.04;
 
-        // ===== SECTION HEADER ANIMATIONS =====
-        gsap.utils.toArray('#gallery h2, #pinned-section h2').forEach(header => {
-            gsap.from(header, {
-                opacity: 0,
-                y: 40,
-                duration: 1,
-                ease: 'power3.out',
-                scrollTrigger: {
-                    trigger: header,
-                    start: 'top 80%',
-                    toggleActions: 'play none none reverse'
+            // === SCENE 0: Hero Overview ===
+            masterTL
+                .set(images[0], { opacity: 1 })
+                .fromTo(cards.hero,
+                    { opacity: 0, y: 100 },
+                    { opacity: 1, y: 0, duration: transitionDuration, ease: 'power2.out' },
+                    0
+                )
+                .to({}, { duration: sceneDuration - transitionDuration * 2 })
+                // Crossfade to Scene 1
+                .to(images[0], { opacity: 0, duration: transitionDuration }, `-=${transitionDuration}`)
+                .to(images[1], { opacity: 1, duration: transitionDuration }, '<')
+                .to(cards.hero, { opacity: 0, y: -50, duration: transitionDuration }, '<');
+
+            // === SCENE 1: Context / Problem ===
+            masterTL
+                .fromTo(cards.context,
+                    { opacity: 0, y: 100 },
+                    { opacity: 1, y: 0, duration: transitionDuration, ease: 'power2.out' }
+                )
+                .to({}, { duration: sceneDuration - transitionDuration * 2 })
+                .to(images[1], { opacity: 0, duration: transitionDuration }, `-=${transitionDuration}`)
+                .to(images[2], { opacity: 1, duration: transitionDuration }, '<')
+                .to(cards.context, { opacity: 0, y: -50, duration: transitionDuration }, '<');
+
+            // === SCENE 2: Mechanical / The Armor ===
+            masterTL
+                .fromTo(cards.mechanical,
+                    { opacity: 0, y: 100 },
+                    { opacity: 1, y: 0, duration: transitionDuration, ease: 'power2.out' }
+                )
+                .to({}, { duration: sceneDuration - transitionDuration * 2 })
+                .to(images[2], { opacity: 0, duration: transitionDuration }, `-=${transitionDuration}`)
+                .to(images[3], { opacity: 1, duration: transitionDuration }, '<')
+                .to(cards.mechanical, { opacity: 0, y: -50, duration: transitionDuration }, '<');
+
+            // === SCENE 3: Electronics / The Brain ===
+            masterTL
+                .fromTo(cards.electronics,
+                    { opacity: 0, y: 100 },
+                    { opacity: 1, y: 0, duration: transitionDuration, ease: 'power2.out' }
+                )
+                .to({}, { duration: sceneDuration - transitionDuration * 2 })
+                .to(images[3], { opacity: 0, duration: transitionDuration }, `-=${transitionDuration}`)
+                .to(images[4], { opacity: 1, duration: transitionDuration }, '<')
+                .to(cards.electronics, { opacity: 0, y: -50, duration: transitionDuration }, '<');
+
+            // === SCENE 4: Connectivity / The Eye ===
+            masterTL
+                .fromTo(cards.connectivity,
+                    { opacity: 0, y: 100 },
+                    { opacity: 1, y: 0, duration: transitionDuration, ease: 'power2.out' }
+                )
+                .to({}, { duration: sceneDuration - transitionDuration * 2 })
+                .to(images[4], { opacity: 0, duration: transitionDuration }, `-=${transitionDuration}`)
+                .to(images[5], { opacity: 1, duration: transitionDuration }, '<')
+                .to(cards.connectivity, { opacity: 0, y: -50, duration: transitionDuration }, '<');
+
+            // === SCENE 5: Software / Digital Twin (FINALE) ===
+            masterTL
+                .fromTo(cards.software,
+                    { opacity: 0, y: 100, scale: 0.95 },
+                    { opacity: 1, y: 0, scale: 1, duration: transitionDuration * 1.5, ease: 'power2.out' }
+                )
+                // Hold the finale longer
+                .to({}, { duration: sceneDuration * 1.2 });
+
+        } else {
+            // Mobile: Simplified scroll-triggered animations (no pinning)
+            const mobileCards = Object.values(cards);
+
+            // Reset positions for mobile
+            mobileCards.forEach(card => {
+                if (card) {
+                    card.style.position = 'relative';
+                    card.style.opacity = '1';
+                    card.style.transform = 'none';
+                    card.style.marginBottom = '2rem';
                 }
             });
+
+            // Show all images stacked for mobile with scroll animations
+            images.forEach((img, i) => {
+                gsap.fromTo(img,
+                    { opacity: 0 },
+                    {
+                        opacity: 1,
+                        scrollTrigger: {
+                            trigger: img,
+                            start: 'top 80%',
+                            end: 'top 50%',
+                            scrub: 1
+                        }
+                    }
+                );
+            });
+        }
+
+        // ===== SPECS SECTION ANIMATION =====
+        // Intersection Observer for scroll-triggered animation
+        const specsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('spec-visible');
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        });
+
+        // Observe each spec card
+        document.querySelectorAll('#specs .glass-panel').forEach(card => {
+            specsObserver.observe(card);
         });
 
         // ===== FOOTER ANIMATION =====
-        gsap.from('#footer', {
+        gsap.from('footer > div > *', {
             opacity: 0,
-            duration: 1,
+            y: 40,
+            stagger: 0.1,
+            duration: 0.8,
             ease: 'power2.out',
             scrollTrigger: {
-                trigger: '#footer',
-                start: 'top 90%',
-                toggleActions: 'play none none none'
+                trigger: 'footer',
+                start: 'top 85%',
             }
         });
 
-        // ===== SMOOTH ANCHOR SCROLLING =====
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    lenis.scrollTo(target, {
-                        offset: 0,
-                        duration: 1.5,
-                        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
-                    });
+        // ===== RESIZE HANDLER =====
+        let resizeTimer;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(() => {
+                ScrollTrigger.refresh();
+            }, 250);
+        });
+
+        // ===== INTERNATIONALIZATION (i18n) =====
+        const translations = {
+            en: {
+                // Navigation
+                nav_technology: 'Technology',
+                nav_specs: 'Specifications',
+                nav_contact: 'Contact',
+
+                // Hero Section
+                hero_subtitle: 'Autonomous Preservation Ecosystem',
+                hero_tagline: 'Protect the past. Build the future.',
+                hero_cta: 'Explore Technology',
+                hero_demo: 'Watch Demo',
+                scroll_explore: 'SCROLL TO EXPLORE',
+
+                // Scene 0: Hero Card
+                card_hero_desc: 'Autonomous Preservation Ecosystem — Protecting artifacts from the moment they leave the soil.',
+
+                // Scene 1: Problem & Context
+                scene1_label: 'Critical Issue',
+                scene1_title: 'Soil Memory &<br><span class="text-electric-purple">Context Shock</span>',
+                scene1_desc: 'Artifacts survive centuries in stable underground conditions. The moment of excavation exposes them to <strong class="text-neon-cyan">sudden environmental changes</strong> — humidity spikes, temperature fluctuations, and oxidation begin <strong class="text-red-400">within seconds</strong>.',
+                scene1_code_title: '// Environmental Threat Analysis',
+
+                // Scene 2: Mechanical / The Armor
+                scene2_label: 'Hardware Layer',
+                scene2_title: 'Creality K1 Max &<br><span class="text-white/60">Hyper PLA Armor</span>',
+                scene2_desc: 'Modular cylindrical capsule with <strong class="text-electric-purple">double-wall thermal isolation</strong>. Impact-resistant Hyper PLA withstands harsh field conditions while maintaining hermetic sealing around the artifact envelope.',
+
+                // Scene 3: Electronics / The Brain
+                scene3_label: 'Control System',
+                scene3_title: 'Active Stabilization &<br><span class="text-electric-purple">Arduino Core</span>',
+                scene3_desc: 'The <strong class="text-neon-cyan">Arduino Uno R3</strong> executes real-time active stabilization algorithms. It processes data from DHT22 sensors and drives ceramic heaters + dual fans to maintain an artifact-safe environment with <strong class="text-electric-purple">millisecond precision</strong>.',
+
+                // Scene 4: Connectivity / The Eye
+                scene4_label: 'Live',
+                scene4_title: 'ESP32-CAM &<br><span class="text-white/60">IoT Dashboard</span>',
+                scene4_desc: '<strong class="text-electric-purple">AI-Thinker ESP32-CAM</strong> hosts a self-contained web server. Real-time MJPEG video stream and sensor telemetry accessible from any device on the field network — <strong class="text-neon-cyan">zero cloud dependency</strong>.',
+
+                // Scene 5: Software / Digital Twin
+                scene5_label: 'Final • The Grand Finale',
+                scene5_title: 'Digital Twin &<br><span class="text-white/60">Contactless Analysis</span>',
+                scene5_desc: '<strong class="text-neon-cyan">Antares Studio</strong> — A Python/PyQt6 desktop application. Photogrammetry pipeline processes ESP32-CAM frames into high-fidelity <strong class="text-electric-purple">Point Cloud & Mesh</strong> reconstructions. Preserve artifacts digitally for eternity — without ever touching them.',
+
+                // Specs Section
+                specs_label: 'Technical Specifications',
+                specs_title: 'Full System Overview',
+                spec1_title: 'Processing Power',
+                spec1_desc: 'Dual-core architecture with dedicated sensor polling and actuation threads.',
+                spec2_title: 'Power Efficiency',
+                spec2_desc: 'Optimized for extended field deployment with intelligent power management.',
+                spec3_title: '3D Resolution',
+                spec3_desc: 'High-fidelity photogrammetric reconstruction for museum-grade digital twins.',
+                spec_memory: 'Memory',
+                spec_battery: 'Battery',
+                spec_points: 'Points',
+                spec_texture: 'Texture',
+
+                // Footer
+                footer_desc: 'Revolutionizing archaeological preservation through intelligent climate control, IoT connectivity, and non-invasive digital twin generation.',
+                footer_tagline: 'Protect the past. Build the future.',
+                footer_technology: 'Technology',
+                footer_hardware: 'Hardware Design',
+                footer_resources: 'Resources',
+                footer_docs: 'Documentation',
+                footer_papers: 'Research Papers',
+                footer_opensource: 'Open Source',
+                footer_contact_team: 'Contact Team',
+                footer_copyright: '© 2026 ANTARES Project. Open Source Archaeological Innovation.',
+                footer_passion: 'Built with passion for heritage preservation'
+            },
+            tr: {
+                // Navigation
+                nav_technology: 'Teknoloji',
+                nav_specs: 'Özellikler',
+                nav_contact: 'İletişim',
+
+                // Hero Section
+                hero_subtitle: 'Otonom Koruma Ekosistemi',
+                hero_tagline: 'Geçmişi koru. Geleceği inşa et.',
+                hero_cta: 'Teknolojiyi Keşfet',
+                hero_demo: 'Demo İzle',
+                scroll_explore: 'KEŞFETMEK İÇİN KAYDIR',
+
+                // Scene 0: Hero Card
+                card_hero_desc: 'Otonom Koruma Ekosistemi — Eserleri topraktan çıktıkları andan itibaren koruma altına alır.',
+
+                // Scene 1: Problem & Context
+                scene1_label: 'Kritik Sorun',
+                scene1_title: 'Toprak Hafızası &<br><span class="text-electric-purple">Bağlam Şoku</span>',
+                scene1_desc: 'Eserler yüzyıllarca stabil yeraltı koşullarında hayatta kalır. Kazı anı onları <strong class="text-neon-cyan">ani çevresel değişimlere</strong> maruz bırakır — nem sıçramaları, sıcaklık dalgalanmaları ve oksidasyon <strong class="text-red-400">saniyeler içinde</strong> başlar.',
+                scene1_code_title: '// Çevresel Tehdit Analizi',
+
+                // Scene 2: Mechanical / The Armor
+                scene2_label: 'Donanım Katmanı',
+                scene2_title: 'Creality K1 Max &<br><span class="text-white/60">Hyper PLA Zırh</span>',
+                scene2_desc: '<strong class="text-electric-purple">Çift duvarlı termal izolasyonlu</strong> modüler silindirik kapsül. Darbelere dayanıklı Hyper PLA, eser zarfı etrafında hermetik sızdırmazlığı korurken zorlu saha koşullarına dayanır.',
+
+                // Scene 3: Electronics / The Brain
+                scene3_label: 'Kontrol Sistemi',
+                scene3_title: 'Aktif Stabilizasyon &<br><span class="text-electric-purple">Arduino Çekirdeği</span>',
+                scene3_desc: '<strong class="text-neon-cyan">Arduino Uno R3</strong> gerçek zamanlı aktif stabilizasyon algoritmalarını yürütür. DHT22 sensörlerinden gelen verileri işler ve seramik ısıtıcılar + çift fanları sürerek <strong class="text-electric-purple">milisaniye hassasiyetinde</strong> eser-güvenli ortamı korur.',
+
+                // Scene 4: Connectivity / The Eye
+                scene4_label: 'Canlı',
+                scene4_title: 'ESP32-CAM &<br><span class="text-white/60">IoT Kontrol Paneli</span>',
+                scene4_desc: '<strong class="text-electric-purple">AI-Thinker ESP32-CAM</strong> kendi kendine yeten bir web sunucusu barındırır. Gerçek zamanlı MJPEG video akışı ve sensör telemetrisi saha ağındaki herhangi bir cihazdan erişilebilir — <strong class="text-neon-cyan">bulut bağımlılığı sıfır</strong>.',
+
+                // Scene 5: Software / Digital Twin
+                scene5_label: 'Final • Büyük Final',
+                scene5_title: 'Dijital İkiz &<br><span class="text-white/60">Temassız Analiz</span>',
+                scene5_desc: '<strong class="text-neon-cyan">Antares Studio</strong> — Python/PyQt6 masaüstü uygulaması. Fotogrametri hattı ESP32-CAM karelerini yüksek doğruluklu <strong class="text-electric-purple">Nokta Bulutu & Mesh</strong> rekonstrüksiyonlarına dönüştürür. Eserleri sonsuza dek dijital olarak koruyun — onlara hiç dokunmadan.',
+
+                // Specs Section
+                specs_label: 'Teknik Özellikler',
+                specs_title: 'Tam Sistem Genel Bakışı',
+                spec1_title: 'İşlem Gücü',
+                spec1_desc: 'Sensör yoklama ve tahrik için ayrılmış iş parçacıklarıyla çift çekirdekli mimari.',
+                spec2_title: 'Güç Verimliliği',
+                spec2_desc: 'Akıllı güç yönetimi ile uzun süreli saha kullanımı için optimize edilmiş.',
+                spec3_title: '3D Çözünürlük',
+                spec3_desc: 'Müze kalitesinde dijital ikizler için yüksek doğruluklu fotogrametrik rekonstrüksiyon.',
+                spec_memory: 'Bellek',
+                spec_battery: 'Batarya',
+                spec_points: 'Noktalar',
+                spec_texture: 'Doku',
+
+                // Footer
+                footer_desc: 'Akıllı iklim kontrolü, IoT bağlantısı ve invaziv olmayan dijital ikiz oluşturma yoluyla arkeolojik korumada devrim yaratıyor.',
+                footer_tagline: 'Geçmişi koru. Geleceği inşa et.',
+                footer_technology: 'Teknoloji',
+                footer_hardware: 'Donanım Tasarımı',
+                footer_resources: 'Kaynaklar',
+                footer_docs: 'Dokümantasyon',
+                footer_papers: 'Araştırma Makaleleri',
+                footer_opensource: 'Açık Kaynak',
+                footer_contact_team: 'Ekiple İletişim',
+                footer_copyright: '© 2026 ANTARES Projesi. Açık Kaynak Arkeolojik İnovasyon.',
+                footer_passion: 'Miras koruma tutkusuyla inşa edildi'
+            }
+        };
+
+        // Current language (default: Turkish)
+        let currentLang = localStorage.getItem('antares_lang') || 'tr';
+        let isAnimating = false;
+
+        // Change Language Function with Animation
+        function changeLanguage(lang) {
+            // Skip if same language or already animating
+            if (lang === currentLang && document.documentElement.lang === lang) return;
+            if (isAnimating) return;
+
+            isAnimating = true;
+            currentLang = lang;
+            localStorage.setItem('antares_lang', lang);
+
+            // Get all translatable elements
+            const elements = document.querySelectorAll('[data-lang]');
+
+            // Phase 1: Fade out
+            elements.forEach(el => el.classList.add('lang-switching'));
+
+            // Phase 2: Update content after fade out
+            setTimeout(() => {
+                elements.forEach(el => {
+                    const key = el.getAttribute('data-lang');
+                    if (translations[lang] && translations[lang][key]) {
+                        el.innerHTML = translations[lang][key];
+                    }
+                });
+
+                // Update language switcher buttons
+                document.querySelectorAll('[data-lang-switch]').forEach(btn => {
+                    btn.classList.toggle('active', btn.getAttribute('data-lang-switch') === lang);
+                });
+
+                // Update HTML lang attribute
+                document.documentElement.lang = lang;
+
+                // Phase 3: Fade back in
+                elements.forEach(el => el.classList.remove('lang-switching'));
+
+                isAnimating = false;
+                console.log(`Language changed to: ${lang.toUpperCase()}`);
+            }, 300);
+        }
+
+        // Initialize language on page load (no animation for initial load)
+        (function initLanguage() {
+            const lang = currentLang;
+            document.querySelectorAll('[data-lang]').forEach(el => {
+                const key = el.getAttribute('data-lang');
+                if (translations[lang] && translations[lang][key]) {
+                    el.innerHTML = translations[lang][key];
                 }
             });
-        });
-
-        // ===== RESIZE HANDLER =====
-        let resizeTimeout;
-        window.addEventListener('resize', () => {
-            clearTimeout(resizeTimeout);
-            resizeTimeout = setTimeout(() => {
-                ScrollTrigger.refresh();
-            }, 200);
-        });
-
-        // Initial setup - make first card visible
-        gsap.set('.story-panel[data-step="1"] .story-card', { opacity: 1, y: 0 });
+            document.querySelectorAll('[data-lang-switch]').forEach(btn => {
+                btn.classList.toggle('active', btn.getAttribute('data-lang-switch') === lang);
+            });
+            document.documentElement.lang = lang;
+        })();
     </script>
-
 </body>
 
 </html>
