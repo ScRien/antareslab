@@ -1,23 +1,52 @@
+# ===============================
 # Python
+# ===============================
 __pycache__/
 *.pyc
 *.pyo
 *.pyd
 *.log
+.pytest_cache/
+.mypy_cache/
 
-# venv
+# ===============================
+# Virtual Environments
+# ===============================
+antares_env/
 .venv/
 venv/
 ENV/
 
-# OS
+# ===============================
+# PyInstaller / Build Outputs
+# ===============================
+build/
+dist/
+release/
+installer_out/
+*.spec
+
+# ===============================
+# OS Files
+# ===============================
 .DS_Store
 Thumbs.db
 
-# IDE
+# ===============================
+# IDE / Editor
+# ===============================
 .vscode/
 .idea/
 
-# Outputs (istersen)
+# ===============================
+# AntaresStudio Runtime Outputs
+# (Generated 3D / Capture Data)
+# ===============================
 AntaresStudio/antares_3d_data/**/3d_output/
 AntaresStudio/**/3d_output/
+
+# ===============================
+# Temporary / Misc
+# ===============================
+*.tmp
+*.bak

@@ -1,0 +1,3 @@
+rembg==2.0.59
+Pillow==10.4.0
+onnxruntime-gpu==1.18.1

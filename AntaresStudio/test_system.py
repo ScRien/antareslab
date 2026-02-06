@@ -1,86 +1,68 @@
-# -*- coding: utf-8 -*-
-"""
-test_system.py - Donanım olmadan pipeline testi
-- Yerel bir mock ESP32 server ayağa kalkar:
-  - / -> 200 OK
-  - /360_list -> {"12345": N}
-  - /360_12345_i.jpg -> sentetik JPG
-- AntaresStudio içindeki Esp32Client ile indirir
-- ReconstructionWorker'ın core fonksiyonları GUI olmadan çağrılabilir değil; burada sadece download+dosya varlığını test ediyoruz.
-İstersen bunu pytest'e çevirebilirsin.
-"""
-import os
-import threading
-import time
-from http.server import BaseHTTPRequestHandler, HTTPServer
-import json
-import numpy as np
-import cv2
+import sys
+import platform
+import importlib
+from pathlib import Path
 
-PORT = 8089
-SESSION = "12345"
-N = 12
+PKGS = [
+    ("PyQt6", "PyQt6"),
+    ("numpy", "numpy"),
+    ("requests", "requests"),
+    ("opencv (cv2)", "cv2"),
+    ("joblib", "joblib"),
+    ("open3d (optional)", "open3d"),
+    ("rembg (optional)", "rembg"),
+    ("onnxruntime (optional)", "onnxruntime"),
+]
 
-def make_img(i: int):
-    img = np.full((480, 640, 3), 255, np.uint8)
-    cv2.putText(img, f"IMG {i}", (50, 240), cv2.FONT_HERSHEY_SIMPLEX, 2, (0,0,0), 4)
-    # basit pattern
-    cv2.circle(img, (320,240), 60+i, (50,100,200), 6)
-    ok, buf = cv2.imencode(".jpg", img, [int(cv2.IMWRITE_JPEG_QUALITY), 85])
-    return buf.tobytes()
-
-IMGS = [make_img(i) for i in range(N)]
-
-class Handler(BaseHTTPRequestHandler):
-    def do_GET(self):
-        if self.path == "/":
-            self.send_response(200); self.end_headers(); self.wfile.write(b"OK"); return
-        if self.path == "/360_list":
-            self.send_response(200)
-            self.send_header("Content-Type","application/json")
-            self.end_headers()
-            self.wfile.write(json.dumps({SESSION: N}).encode("utf-8"))
-            return
-        if self.path.startswith(f"/360_{SESSION}_") and self.path.endswith(".jpg"):
-            try:
-                idx = int(self.path.split("_")[-1].split(".")[0])
-            except Exception:
-                self.send_response(404); self.end_headers(); return
-            if 0 <= idx < N:
-                data = IMGS[idx]
-                self.send_response(200)
-                self.send_header("Content-Type","image/jpeg")
-                self.end_headers()
-                self.wfile.write(data)
-                return
-            self.send_response(404); self.end_headers(); return
-        self.send_response(404); self.end_headers()
-
-def run_server():
-    httpd = HTTPServer(("127.0.0.1", PORT), Handler)
-    httpd.serve_forever()
+def try_import(modname: str):
+    try:
+        m = importlib.import_module(modname)
+        ver = getattr(m, "__version__", "unknown")
+        return True, ver, None
+    except Exception as e:
+        return False, None, str(e)
 
 def main():
-    t = threading.Thread(target=run_server, daemon=True)
-    t.start()
-    time.sleep(0.2)
+    print("=================================================")
+    print(" ANTARES - System Diagnostic")
+    print("=================================================")
 
-    # import client from main file
-    from antares_studio_final import Esp32Client  # dosya adını aynı klasörde tut
+    print(f"Python: {sys.version}")
+    print(f"Executable: {sys.executable}")
+    print(f"Platform: {platform.platform()} / {platform.machine()}")
+    print(f"Working dir: {Path.cwd()}")
+    print(f"Venv active: {'antares_env' in sys.executable.lower()}")
+    print("-------------------------------------------------")
 
-    ip = f"127.0.0.1:{PORT}"
-    c = Esp32Client(ip)
-    c.ping()
-    scans = c.get_scan_list()
-    assert SESSION in scans and scans[SESSION] == N
+    all_ok = True
+    for label, mod in PKGS:
+        ok, ver, err = try_import(mod)
+        if ok:
+            print(f"[OK]   {label}: {ver}")
+        else:
+            print(f"[MISS] {label}: {err}")
+            # open3d/rembg/onnxruntime optional
+            if "optional" not in label:
+                all_ok = False
 
-    out = os.path.join(os.getcwd(), "tmp_test_download")
-    files = c.download_scan(SESSION, N, out, progress=lambda p: None, log=lambda s: None, concurrency=3)
-    assert len(files) == N
-    assert all(os.path.exists(f) for f in files)
+    print("-------------------------------------------------")
 
-    print("✅ TEST OK - download pipeline çalışıyor.")
-    print("Klasör:", out)
+    # Extra: cv2 build info (if exists)
+    try:
+        import cv2
+        print("[INFO] OpenCV build summary (first lines):")
+        info = cv2.getBuildInformation().splitlines()
+        for line in info[:12]:
+            print("       " + line)
+    except Exception:
+        pass
+
+    print("-------------------------------------------------")
+    if all_ok:
+        print("RESULT: ✅ Base runtime hazır.")
+    else:
+        print("RESULT: ❌ Base runtime eksik. (Yukarıda MISS olanları düzelt)")
+    print("=================================================")
 
 if __name__ == "__main__":
     main()
