@@ -1,0 +1,55 @@
+# ===============================
+# Python (AntaresStudio & Genel)
+# ===============================
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.log
+.pytest_cache/
+.mypy_cache/
+
+# ===============================
+# Virtual Environments
+# ===============================
+antares_env/
+.venv/
+venv/
+ENV/
+
+# ===============================
+# PyInstaller / Build & Installer
+# ===============================
+# Kurulum ve derleme çıktılarını tamamen engeller
+build/
+dist/
+release/
+installer_out/
+AntaresStudio/installer/
+AntaresStudio/build_base_work/
+*.spec
+
+# ===============================
+# External Tools & Binaries
+# ===============================
+# VC_redist gibi dış araçları ve her türlü exe'yi engeller
+AntaresStudio/tools/
+*.exe
+*.msi
+
+# ===============================
+# AntaresLab Özel (Veri ve Geçici Dosyalar)
+# ===============================
+# Üretilen 3D verileri ve çekilen ham görüntüleri engeller
+**/antares_3d_data/**/3d_output/
+**/3d_output/
+*.tmp
+*.bak
+
+# ===============================
+# IDE / Sistem
+# ===============================
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

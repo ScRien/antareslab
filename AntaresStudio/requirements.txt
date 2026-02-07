@@ -1,0 +1,5 @@
+PyQt6==6.7.1
+numpy==1.26.4
+requests==2.32.3
+opencv-contrib-python==4.10.0.84
+joblib==1.4.2
