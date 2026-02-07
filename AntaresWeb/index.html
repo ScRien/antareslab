@@ -114,7 +114,7 @@
             text-shadow: 0 0 40px rgba(188, 19, 254, 0.5);
         }
 
-        /* Stage Images */
+        /* Stage Images (Desktop only) */
         .stage-image {
             position: absolute;
             inset: 0;
@@ -130,25 +130,7 @@
             opacity: 1;
         }
 
-        /* Mobile: Stack images */
-        @media (max-width: 1023px) {
-            .stage-image {
-                position: relative !important;
-                opacity: 1 !important;
-                height: auto !important;
-                aspect-ratio: 16/10;
-                margin-bottom: 1rem;
-            }
-
-            #stage {
-                height: auto !important;
-                display: flex;
-                flex-direction: column;
-                gap: 2rem;
-            }
-        }
-
-        /* Text Cards */
+        /* Text Cards (Desktop only) */
         .text-card {
             position: absolute;
             opacity: 0;
@@ -164,34 +146,22 @@
             margin-bottom: 2rem;
         }
 
-        /* Mobile: Text Cards */
-        @media (max-width: 1023px) {
-            .text-card {
-                position: relative !important;
-                opacity: 1 !important;
-                transform: none !important;
-                left: 0 !important;
-                right: 0 !important;
-                bottom: auto !important;
-                top: auto !important;
-                max-width: 100% !important;
-                width: 100% !important;
-                padding: 0 !important;
-                margin-bottom: 2rem;
-            }
+        /* Mobile Scene Container */
 
-            #sticky-wrapper {
-                position: relative !important;
-                height: auto !important;
-                display: flex;
-                flex-direction: column;
-                padding: 2rem 1.5rem;
-            }
-
-            #pinned-container {
-                height: auto !important;
-            }
+        .mobile-scene .aspect-\[16\/10\],
+        .mobile-scene .glass-panel-strong {
+            opacity: 0;
+            transform: translateY(40px);
         }
+
+        /* Fallback: Show mobile scenes if JS fails */
+        .no-js .mobile-scene .aspect-\[16\/10\],
+        .no-js .mobile-scene .glass-panel-strong {
+            opacity: 1 !important;
+            transform: none !important;
+        }
+
+
 
         /* Specs section cards - Scroll-triggered animation */
         @keyframes fadeUpSpec {
@@ -520,60 +490,37 @@
         </div>
     </section>
 
-    <!-- ========== MASTER PINNED SECTION (600vh for 6 scenes) ========== -->
+    <!-- ========== MASTER PINNED SECTION ========== -->
+    <!-- Desktop: 600vh with pinned scroll animation -->
+    <!-- Mobile: Auto height with stacked scenes -->
     <section id="pinned-container" class="relative h-auto lg:h-[600vh]">
-        <!-- Sticky Wrapper -->
+
+        <!-- ===== DESKTOP LAYOUT (hidden on mobile) ===== -->
         <div id="sticky-wrapper"
-            class="lg:h-screen w-full flex flex-col lg:flex-row items-center justify-center overflow-hidden">
+            class="hidden lg:flex lg:sticky lg:top-0 lg:h-screen w-full items-center justify-center overflow-hidden">
 
-            <!-- Central Visual Stage -->
-            <div id="stage"
-                class="relative w-full max-w-5xl h-[65vh] mx-6 lg:mx-12 rounded-3xl overflow-hidden glow-cyan">
-
-                <!-- Image 0: Hero (shown briefly at start of scroll) -->
+            <!-- Central Visual Stage (Desktop Only) -->
+            <div id="stage" class="relative w-full max-w-5xl h-[65vh] mx-12 rounded-3xl overflow-hidden glow-cyan">
                 <img id="img-hero-stage" src="hero.png" alt="ANTARES V8 Capsule overview" class="stage-image active">
-
-                <!-- Image 1: Context - Soil Sensor / Excavation -->
-                <img id="img-context" src="scene2.png" alt="YL-69 Soil Moisture Sensor in excavation context"
-                    class="stage-image">
-
-                <!-- Image 2: Mechanical - Capsule Body -->
-                <img id="img-mechanical" src="scene5.png" alt="Creality K1 Max printed Hyper PLA capsule structure"
-                    class="stage-image">
-
-                <!-- Image 3: Electronics - Arduino & Circuits -->
-                <img id="img-electronics" src="scene1.png" alt="Arduino Uno R3, LCD Display, internal wiring"
-                    class="stage-image">
-
-                <!-- Image 4: Connectivity - ESP32 Dashboard -->
-                <img id="img-connectivity" src="scene4.png" alt="Smartphone showing ESP32-CAM web dashboard"
-                    class="stage-image">
-
-                <!-- Image 5: Software - Antares Studio (Placeholder until you add scene5.png) -->
-                <img id="img-software" src="scene3.png" alt="Antares Studio Python App with Point Cloud visualization"
-                    class="stage-image">
-
-                <!-- Gradient Overlay -->
+                <img id="img-context" src="scene2.png" alt="YL-69 Soil Moisture Sensor" class="stage-image">
+                <img id="img-mechanical" src="scene5.png" alt="Creality K1 Max capsule" class="stage-image">
+                <img id="img-electronics" src="scene1.png" alt="Arduino Uno R3" class="stage-image">
+                <img id="img-connectivity" src="scene4.png" alt="ESP32-CAM dashboard" class="stage-image">
+                <img id="img-software" src="scene3.png" alt="Antares Studio" class="stage-image">
                 <div class="absolute inset-0 gradient-overlay pointer-events-none"></div>
             </div>
 
-            <!-- ========== TEXT CARDS ========== -->
-
-            <!-- Scene 0: Hero Introduction (on-stage) - VISIBLE BY DEFAULT -->
+            <!-- Desktop Text Cards (Absolutely positioned) -->
             <div id="card-hero" class="text-card bottom-8 left-1/2 -translate-x-1/2 max-w-2xl w-full px-6"
                 style="opacity: 1; transform: translateX(-50%) translateY(0);">
                 <div class="glass-panel-strong glow-cyan p-8 text-center">
-                    <h2 class="font-clash font-bold text-3xl md:text-5xl mb-4 text-glow-cyan">
-                        ANTARES V8
-                    </h2>
-                    <p class="font-inter text-white/70 text-lg leading-relaxed" data-lang="card_hero_desc">
-                        Autonomous Preservation Ecosystem — Protecting artifacts from the moment they leave the soil.
-                    </p>
+                    <h2 class="font-clash font-bold text-3xl md:text-5xl mb-4 text-glow-cyan">ANTARES V8</h2>
+                    <p class="font-inter text-white/70 text-lg leading-relaxed" data-lang="card_hero_desc">Autonomous
+                        Preservation Ecosystem — Protecting artifacts from the moment they leave the soil.</p>
                 </div>
             </div>
 
-            <!-- Scene 1: Problem & Context -->
-            <div id="card-context" class="text-card bottom-8 left-6 lg:left-12 max-w-xl">
+            <div id="card-context" class="text-card bottom-8 left-12 max-w-xl">
                 <div class="glass-panel-strong glow-cyan p-8">
                     <div class="flex items-center gap-4 mb-5">
                         <div class="step-number">01</div>
@@ -581,15 +528,11 @@
                             data-lang="scene1_label">Critical Issue</span>
                     </div>
                     <h2 class="font-clash font-bold text-3xl md:text-4xl mb-4 text-glow-cyan" data-lang="scene1_title">
-                        Soil Memory &<br><span class="text-electric-purple">Context Shock</span>
-                    </h2>
-                    <p class="font-inter text-white/70 leading-relaxed mb-6" data-lang="scene1_desc">
-                        Artifacts survive centuries in stable underground conditions. The moment of excavation exposes
-                        them
-                        to <strong class="text-neon-cyan">sudden environmental changes</strong> — humidity spikes,
-                        temperature
-                        fluctuations, and oxidation begin <strong class="text-red-400">within seconds</strong>.
-                    </p>
+                        Soil Memory &<br><span class="text-electric-purple">Context Shock</span></h2>
+                    <p class="font-inter text-white/70 leading-relaxed mb-6" data-lang="scene1_desc">Artifacts survive
+                        centuries in stable underground conditions. The moment of excavation exposes them to <strong
+                            class="text-neon-cyan">sudden environmental changes</strong> — humidity spikes, temperature
+                        fluctuations, and oxidation begin <strong class="text-red-400">within seconds</strong>.</p>
                     <div class="code-block">
                         <span class="text-neon-cyan" data-lang="scene1_code_title">// Environmental Threat
                             Analysis</span><br>
@@ -602,8 +545,7 @@
                 </div>
             </div>
 
-            <!-- Scene 2: Mechanical / The Armor -->
-            <div id="card-mechanical" class="text-card bottom-8 right-6 lg:right-12 max-w-xl">
+            <div id="card-mechanical" class="text-card bottom-8 right-12 max-w-xl">
                 <div class="glass-panel-strong glow-cyan p-8">
                     <div class="flex items-center gap-4 mb-5">
                         <div class="step-number">02</div>
@@ -611,14 +553,11 @@
                             data-lang="scene2_label">Hardware Layer</span>
                     </div>
                     <h2 class="font-clash font-bold text-3xl md:text-4xl mb-4 text-glow-cyan" data-lang="scene2_title">
-                        Creality K1 Max &<br><span class="text-white/60">Hyper PLA Armor</span>
-                    </h2>
-                    <p class="font-inter text-white/70 leading-relaxed mb-6" data-lang="scene2_desc">
-                        Modular cylindrical capsule with <strong class="text-electric-purple">double-wall thermal
-                            isolation</strong>.
+                        Creality K1 Max &<br><span class="text-white/60">Hyper PLA Armor</span></h2>
+                    <p class="font-inter text-white/70 leading-relaxed mb-6" data-lang="scene2_desc">Modular cylindrical
+                        capsule with <strong class="text-electric-purple">double-wall thermal isolation</strong>.
                         Impact-resistant Hyper PLA withstands harsh field conditions while maintaining hermetic sealing
-                        around the artifact envelope.
-                    </p>
+                        around the artifact envelope.</p>
                     <div class="code-block">
                         <span class="text-neon-cyan">// Fabrication Specs</span><br>
                         <span class="text-white/60">Printer:</span> <span class="text-green-400">Creality K1
@@ -632,27 +571,20 @@
                 </div>
             </div>
 
-            <!-- Scene 3: Electronics / The Brain -->
-            <div id="card-electronics" class="text-card top-1/2 -translate-y-1/2 left-6 lg:left-12 max-w-xl">
+            <div id="card-electronics" class="text-card top-1/2 -translate-y-1/2 left-12 max-w-xl">
                 <div class="glass-panel-strong glow-cyan p-8">
                     <div class="flex items-center gap-4 mb-5">
                         <div class="step-number">03</div>
                         <span class="font-mono text-xs text-neon-cyan tracking-widest uppercase"
                             data-lang="scene3_label">Control System</span>
                     </div>
-
                     <h2 class="font-clash font-bold text-3xl md:text-4xl mb-4 text-glow-cyan" data-lang="scene3_title">
-                        Active Stabilization &<br><span class="text-electric-purple">Arduino Core</span>
-                    </h2>
-
-                    <p class="font-inter text-white/70 leading-relaxed mb-6" data-lang="scene3_desc">
-                        The <strong class="text-neon-cyan">Arduino Uno R3</strong> executes real-time active
-                        stabilization algorithms.
-                        It processes data from DHT22 sensors and drives ceramic heaters + dual fans to maintain an
-                        artifact-safe environment with <strong class="text-electric-purple">millisecond
-                            precision</strong>.
-                    </p>
-
+                        Active Stabilization &<br><span class="text-electric-purple">Arduino Core</span></h2>
+                    <p class="font-inter text-white/70 leading-relaxed mb-6" data-lang="scene3_desc">The <strong
+                            class="text-neon-cyan">Arduino Uno R3</strong> executes real-time active stabilization
+                        algorithms. It processes data from DHT22 sensors and drives ceramic heaters + dual fans to
+                        maintain an artifact-safe environment with <strong class="text-electric-purple">millisecond
+                            precision</strong>.</p>
                     <div class="code-block">
                         <span class="text-neon-cyan">// arduino.ino — Stabilization Logic</span><br>
                         <span class="text-white/60">Platform:</span> <span class="text-green-400">Arduino Uno
@@ -667,8 +599,7 @@
                 </div>
             </div>
 
-            <!-- Scene 4: Connectivity / The Eye -->
-            <div id="card-connectivity" class="text-card top-1/2 -translate-y-1/2 right-6 lg:right-12 max-w-xl">
+            <div id="card-connectivity" class="text-card top-1/2 -translate-y-1/2 right-12 max-w-xl">
                 <div class="glass-panel-strong glow-cyan p-8">
                     <div class="flex items-center gap-4 mb-5">
                         <div class="step-number">04</div>
@@ -676,15 +607,11 @@
                             data-lang="scene4_label">Live</span>
                     </div>
                     <h2 class="font-clash font-bold text-3xl md:text-4xl mb-4 text-glow-cyan" data-lang="scene4_title">
-                        ESP32-CAM &<br><span class="text-white/60">IoT Dashboard</span>
-                    </h2>
-                    <p class="font-inter text-white/70 leading-relaxed mb-6" data-lang="scene4_desc">
-                        <strong class="text-electric-purple">AI-Thinker ESP32-CAM</strong> hosts a self-contained web
-                        server.
-                        Real-time MJPEG video stream and sensor telemetry accessible from any device on the field
-                        network —
-                        <strong class="text-neon-cyan">zero cloud dependency</strong>.
-                    </p>
+                        ESP32-CAM &<br><span class="text-white/60">IoT Dashboard</span></h2>
+                    <p class="font-inter text-white/70 leading-relaxed mb-6" data-lang="scene4_desc"><strong
+                            class="text-electric-purple">AI-Thinker ESP32-CAM</strong> hosts a self-contained web
+                        server. Real-time MJPEG video stream and sensor telemetry accessible from any device on the
+                        field network — <strong class="text-neon-cyan">zero cloud dependency</strong>.</p>
                     <div class="code-block">
                         <span class="text-neon-cyan">// esp32.ino — Vision/IoT Module</span><br>
                         <span class="text-white/60">Board:</span> <span class="text-green-400">AI-Thinker
@@ -698,26 +625,22 @@
                 </div>
             </div>
 
-            <!-- Scene 5: Software / The Digital Twin (FINALE) -->
             <div id="card-software" class="text-card bottom-8 left-1/2 -translate-x-1/2 max-w-2xl w-full px-6">
-                <div class="glass-panel-strong glow-purple p-8 lg:p-10">
+                <div class="glass-panel-strong glow-purple p-10">
                     <div class="flex items-center gap-4 mb-5">
                         <div class="step-number purple">05</div>
                         <span class="font-mono text-xs text-electric-purple tracking-widest uppercase animate-pulse"
-                            data-lang="scene5_label">Final
-                            • The Grand Finale</span>
+                            data-lang="scene5_label">Final • The Grand Finale</span>
                     </div>
                     <h2 class="font-clash font-bold text-3xl md:text-5xl mb-4 text-glow-purple"
-                        data-lang="scene5_title">
-                        Digital Twin &<br><span class="text-white/60">Contactless Analysis</span>
-                    </h2>
-                    <p class="font-inter text-white/70 leading-relaxed mb-6" data-lang="scene5_desc">
-                        <strong class="text-neon-cyan">Antares Studio</strong> — A Python/PyQt6 desktop application.
-                        Photogrammetry pipeline processes ESP32-CAM frames into high-fidelity
-                        <strong class="text-electric-purple">Point Cloud & Mesh</strong> reconstructions.
-                        Preserve artifacts digitally for eternity — without ever touching them.
-                    </p>
-                    <div class="grid md:grid-cols-2 gap-4">
+                        data-lang="scene5_title">Digital Twin &<br><span class="text-white/60">Contactless
+                            Analysis</span></h2>
+                    <p class="font-inter text-white/70 leading-relaxed mb-6" data-lang="scene5_desc"><strong
+                            class="text-neon-cyan">Antares Studio</strong> — A Python/PyQt6 desktop application.
+                        Photogrammetry pipeline processes ESP32-CAM frames into high-fidelity <strong
+                            class="text-electric-purple">Point Cloud & Mesh</strong> reconstructions. Preserve artifacts
+                        digitally for eternity — without ever touching them.</p>
+                    <div class="grid grid-cols-2 gap-4">
                         <div class="code-block code-block-purple">
                             <span class="text-electric-purple">// antares_studio.py</span><br>
                             <span class="text-white/60">Framework:</span> <span class="text-green-400">PyQt6</span><br>
@@ -732,6 +655,171 @@
                             <span class="text-white/60">→</span> <span class="text-green-400">Mesh
                                 Reconstruction</span><br>
                             <span class="text-white/60">→</span> <span class="text-green-400">Digital Twin Export</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== MOBILE LAYOUT (hidden on desktop) ===== -->
+        <!-- Each scene groups Image + Card together for proper stacking -->
+        <div id="mobile-scenes" class="lg:hidden flex flex-col gap-8 px-4 py-8">
+
+            <!-- Scene 0: Hero -->
+            <div class="mobile-scene flex flex-col gap-4">
+                <div class="w-full aspect-[16/10] rounded-2xl overflow-hidden glow-cyan">
+                    <img src="hero.png" alt="ANTARES V8 Capsule overview" class="w-full h-full object-cover">
+                </div>
+                <div class="glass-panel-strong glow-cyan p-6 text-center">
+                    <h2 class="font-clash font-bold text-2xl mb-3 text-glow-cyan">ANTARES V8</h2>
+                    <p class="font-inter text-white/70 text-base leading-relaxed" data-lang="card_hero_desc">Autonomous
+                        Preservation Ecosystem — Protecting artifacts from the moment they leave the soil.</p>
+                </div>
+            </div>
+
+            <!-- Scene 1: Context -->
+            <div class="mobile-scene flex flex-col gap-4">
+                <div class="w-full aspect-[16/10] rounded-2xl overflow-hidden glow-cyan">
+                    <img src="scene2.png" alt="YL-69 Soil Moisture Sensor" class="w-full h-full object-cover">
+                </div>
+                <div class="glass-panel-strong glow-cyan p-6">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="step-number text-sm w-10 h-10">01</div>
+                        <span class="font-mono text-xs text-red-400 tracking-widest uppercase"
+                            data-lang="scene1_label">Critical Issue</span>
+                    </div>
+                    <h2 class="font-clash font-bold text-2xl mb-3 text-glow-cyan" data-lang="scene1_title">Soil Memory
+                        &<br><span class="text-electric-purple">Context Shock</span></h2>
+                    <p class="font-inter text-white/70 text-sm leading-relaxed mb-4" data-lang="scene1_desc">Artifacts
+                        survive centuries in stable underground conditions. The moment of excavation exposes them to
+                        <strong class="text-neon-cyan">sudden environmental changes</strong> — humidity spikes,
+                        temperature fluctuations, and oxidation begin <strong class="text-red-400">within
+                            seconds</strong>.
+                    </p>
+                    <div class="code-block text-xs">
+                        <span class="text-neon-cyan" data-lang="scene1_code_title">// Environmental Threat
+                            Analysis</span><br>
+                        <span class="text-white/60">Sensor:</span> <span class="text-green-400">YL-69 Soil
+                            Moisture</span><br>
+                        <span class="text-white/60">Humidity Delta:</span> <span class="text-red-400">+45% RH</span><br>
+                        <span class="text-white/60">Oxidation Risk:</span> <span class="text-red-400">CRITICAL</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scene 2: Mechanical -->
+            <div class="mobile-scene flex flex-col gap-4">
+                <div class="w-full aspect-[16/10] rounded-2xl overflow-hidden glow-cyan">
+                    <img src="scene5.png" alt="Creality K1 Max capsule" class="w-full h-full object-cover">
+                </div>
+                <div class="glass-panel-strong glow-cyan p-6">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="step-number text-sm w-10 h-10">02</div>
+                        <span class="font-mono text-xs text-neon-cyan tracking-widest uppercase"
+                            data-lang="scene2_label">Hardware Layer</span>
+                    </div>
+                    <h2 class="font-clash font-bold text-2xl mb-3 text-glow-cyan" data-lang="scene2_title">Creality K1
+                        Max &<br><span class="text-white/60">Hyper PLA Armor</span></h2>
+                    <p class="font-inter text-white/70 text-sm leading-relaxed mb-4" data-lang="scene2_desc">Modular
+                        cylindrical capsule with <strong class="text-electric-purple">double-wall thermal
+                            isolation</strong>. Impact-resistant Hyper PLA withstands harsh field conditions while
+                        maintaining hermetic sealing around the artifact envelope.</p>
+                    <div class="code-block text-xs">
+                        <span class="text-neon-cyan">// Fabrication Specs</span><br>
+                        <span class="text-white/60">Printer:</span> <span class="text-green-400">Creality K1
+                            Max</span><br>
+                        <span class="text-white/60">Material:</span> <span class="text-green-400">Hyper PLA</span><br>
+                        <span class="text-white/60">Build Volume:</span> <span
+                            class="text-green-400">300×300×300mm</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scene 3: Electronics -->
+            <div class="mobile-scene flex flex-col gap-4">
+                <div class="w-full aspect-[16/10] rounded-2xl overflow-hidden glow-cyan">
+                    <img src="scene1.png" alt="Arduino Uno R3" class="w-full h-full object-cover">
+                </div>
+                <div class="glass-panel-strong glow-cyan p-6">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="step-number text-sm w-10 h-10">03</div>
+                        <span class="font-mono text-xs text-neon-cyan tracking-widest uppercase"
+                            data-lang="scene3_label">Control System</span>
+                    </div>
+                    <h2 class="font-clash font-bold text-2xl mb-3 text-glow-cyan" data-lang="scene3_title">Active
+                        Stabilization &<br><span class="text-electric-purple">Arduino Core</span></h2>
+                    <p class="font-inter text-white/70 text-sm leading-relaxed mb-4" data-lang="scene3_desc">The <strong
+                            class="text-neon-cyan">Arduino Uno R3</strong> executes real-time active stabilization
+                        algorithms. It processes data from DHT22 sensors and drives ceramic heaters + dual fans to
+                        maintain an artifact-safe environment with <strong class="text-electric-purple">millisecond
+                            precision</strong>.</p>
+                    <div class="code-block text-xs">
+                        <span class="text-neon-cyan">// arduino.ino — Stabilization Logic</span><br>
+                        <span class="text-white/60">Platform:</span> <span class="text-green-400">Arduino Uno
+                            R3</span><br>
+                        <span class="text-white/60">Processor:</span> <span class="text-green-400">ATmega328P @
+                            16MHz</span><br>
+                        <span class="text-white/60">Algorithm:</span> <span class="text-green-400">PID Control</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scene 4: Connectivity -->
+            <div class="mobile-scene flex flex-col gap-4">
+                <div class="w-full aspect-[16/10] rounded-2xl overflow-hidden glow-cyan">
+                    <img src="scene4.png" alt="ESP32-CAM dashboard" class="w-full h-full object-cover">
+                </div>
+                <div class="glass-panel-strong glow-cyan p-6">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="step-number text-sm w-10 h-10">04</div>
+                        <span class="font-mono text-xs text-neon-cyan tracking-widest uppercase animate-pulse"
+                            data-lang="scene4_label">Live</span>
+                    </div>
+                    <h2 class="font-clash font-bold text-2xl mb-3 text-glow-cyan" data-lang="scene4_title">ESP32-CAM
+                        &<br><span class="text-white/60">IoT Dashboard</span></h2>
+                    <p class="font-inter text-white/70 text-sm leading-relaxed mb-4" data-lang="scene4_desc"><strong
+                            class="text-electric-purple">AI-Thinker ESP32-CAM</strong> hosts a self-contained web
+                        server. Real-time MJPEG video stream and sensor telemetry accessible from any device on the
+                        field network — <strong class="text-neon-cyan">zero cloud dependency</strong>.</p>
+                    <div class="code-block text-xs">
+                        <span class="text-neon-cyan">// esp32.ino — Vision/IoT Module</span><br>
+                        <span class="text-white/60">Board:</span> <span class="text-green-400">AI-Thinker
+                            ESP32-CAM</span><br>
+                        <span class="text-white/60">Stream:</span> <span class="text-green-400">MJPEG @
+                            640×480</span><br>
+                        <span class="text-white/60">Network:</span> <span class="text-green-400">WiFi AP/STA Mode</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scene 5: Software (Finale) -->
+            <div class="mobile-scene flex flex-col gap-4">
+                <div class="w-full aspect-[16/10] rounded-2xl overflow-hidden glow-purple">
+                    <img src="scene3.png" alt="Antares Studio" class="w-full h-full object-cover">
+                </div>
+                <div class="glass-panel-strong glow-purple p-6">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="step-number purple text-sm w-10 h-10">05</div>
+                        <span class="font-mono text-xs text-electric-purple tracking-widest uppercase animate-pulse"
+                            data-lang="scene5_label">Final • The Grand Finale</span>
+                    </div>
+                    <h2 class="font-clash font-bold text-2xl mb-3 text-glow-purple" data-lang="scene5_title">Digital
+                        Twin &<br><span class="text-white/60">Contactless Analysis</span></h2>
+                    <p class="font-inter text-white/70 text-sm leading-relaxed mb-4" data-lang="scene5_desc"><strong
+                            class="text-neon-cyan">Antares Studio</strong> — A Python/PyQt6 desktop application.
+                        Photogrammetry pipeline processes ESP32-CAM frames into high-fidelity <strong
+                            class="text-electric-purple">Point Cloud & Mesh</strong> reconstructions. Preserve artifacts
+                        digitally for eternity — without ever touching them.</p>
+                    <div class="grid grid-cols-2 gap-3">
+                        <div class="code-block code-block-purple text-xs">
+                            <span class="text-electric-purple">// antares_studio.py</span><br>
+                            <span class="text-white/60">Framework:</span> <span class="text-green-400">PyQt6</span><br>
+                            <span class="text-white/60">3D Engine:</span> <span class="text-green-400">Open3D</span>
+                        </div>
+                        <div class="code-block code-block-purple text-xs">
+                            <span class="text-electric-purple">// Capabilities</span><br>
+                            <span class="text-white/60">→</span> <span class="text-green-400">Point Cloud</span><br>
+                            <span class="text-white/60">→</span> <span class="text-green-400">Mesh Recon</span>
                         </div>
                     </div>
                 </div>
@@ -1094,10 +1182,32 @@
 
             // Mobile: max-width 1023px - No pinning, simple fade-up animations
             "(max-width: 1023px)": function () {
-                // CSS handles the layout via media queries
-                // Just add simple fade-up animations for cards
+                // Animate mobile scenes (Image + Card groups)
+                const mobileScenes = document.querySelectorAll('.mobile-scene');
 
-                allCards.forEach((card, index) => {
+                mobileScenes.forEach((scene, index) => {
+                    // Animate the image container
+                    const imageContainer = scene.querySelector('.aspect-\\[16\\/10\\]');
+                    if (imageContainer) {
+                        gsap.fromTo(imageContainer,
+                            { opacity: 0, y: 40, scale: 0.98 },
+                            {
+                                opacity: 1,
+                                y: 0,
+                                scale: 1,
+                                duration: 0.8,
+                                ease: 'power2.out',
+                                scrollTrigger: {
+                                    trigger: imageContainer,
+                                    start: 'top 85%',
+                                    toggleActions: 'play none none reverse'
+                                }
+                            }
+                        );
+                    }
+
+                    // Animate the card (glass panel)
+                    const card = scene.querySelector('.glass-panel-strong');
                     if (card) {
                         gsap.fromTo(card,
                             { opacity: 0, y: 50 },
@@ -1105,33 +1215,16 @@
                                 opacity: 1,
                                 y: 0,
                                 duration: 0.8,
+                                delay: 0.1,
                                 ease: 'power2.out',
                                 scrollTrigger: {
                                     trigger: card,
-                                    start: 'top 85%',
+                                    start: 'top 90%',
                                     toggleActions: 'play none none reverse'
                                 }
                             }
                         );
                     }
-                });
-
-                // Fade in images as they enter viewport
-                images.forEach((img) => {
-                    gsap.fromTo(img,
-                        { opacity: 0, y: 30 },
-                        {
-                            opacity: 1,
-                            y: 0,
-                            duration: 0.6,
-                            ease: 'power2.out',
-                            scrollTrigger: {
-                                trigger: img,
-                                start: 'top 85%',
-                                toggleActions: 'play none none reverse'
-                            }
-                        }
-                    );
                 });
 
                 return function () {
